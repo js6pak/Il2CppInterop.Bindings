@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DebugType>embedded</DebugType>
+
+        <Version>0.1.0</Version>
+        <Description>Auto generated bindings for libil2cpp exports and structs</Description>
+        <Authors>js6pak</Authors>
+
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/BepInEx/Il2CppInterop.Bindings</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AssetRipper.VersionUtilities" Version="1.2.1" />
+    </ItemGroup>
+
+</Project>

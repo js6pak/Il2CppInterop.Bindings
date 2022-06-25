@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AssetRipper.VersionUtilities" Version="1.2.1" />
+        <PackageReference Include="Octokit" Version="0.51.0" />
+
+        <PackageReference Include="CSharpPoet" Version="0.1.0" />
+
+        <PackageReference Include="ClangSharp" Version="14.0.0-beta2" />
+        <PackageReference Include="ClangSharp.Pathogen" Version="0.0.4" />
+        <PackageReference Include="ClangSharp.Pathogen.ClangResources" Version="0.0.4" />
+        <PackageReference Include="ClangSharp.Pathogen.Native.win-x64" Version="0.0.4" />
+        <PackageReference Include="ClangSharp.Pathogen.Native.linux-x64" Version="0.0.4" />
+        <PackageReference Include="libClang" Version="14.0.0" PrivateAssets="all" />
+        <PackageReference Include="libClangSharp" Version="14.0.0-beta1" PrivateAssets="all" />
+    </ItemGroup>
+
+</Project>

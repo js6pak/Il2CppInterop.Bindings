@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Il2CppInterop.Bindings.Generator", "Il2CppInterop.Bindings.Generator\Il2CppInterop.Bindings.Generator.csproj", "{30EDE684-B6BE-4606-8D91-84A922D50D76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Il2CppInterop.Bindings", "Il2CppInterop.Bindings\Il2CppInterop.Bindings.csproj", "{47CDF1EC-C2AD-4B29-9EE8-4B489CB3E488}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30EDE684-B6BE-4606-8D91-84A922D50D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30EDE684-B6BE-4606-8D91-84A922D50D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30EDE684-B6BE-4606-8D91-84A922D50D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30EDE684-B6BE-4606-8D91-84A922D50D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CDF1EC-C2AD-4B29-9EE8-4B489CB3E488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CDF1EC-C2AD-4B29-9EE8-4B489CB3E488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CDF1EC-C2AD-4B29-9EE8-4B489CB3E488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CDF1EC-C2AD-4B29-9EE8-4B489CB3E488}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
