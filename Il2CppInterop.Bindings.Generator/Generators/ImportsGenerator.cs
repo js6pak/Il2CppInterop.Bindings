@@ -27,7 +27,7 @@ public static class ImportsGenerator
                 var csharpParameter = new CSharpParameter(type, name);
 
                 UnmanagedType? stringType = null;
-                if (type.StartsWith("byte*")) stringType = UnmanagedType.LPStr;
+                if (type.StartsWith("byte*")) stringType = UnmanagedType.LPUTF8Str;
                 if (type.StartsWith("char*")) stringType = UnmanagedType.LPWStr;
                 if (stringType != null)
                 {
