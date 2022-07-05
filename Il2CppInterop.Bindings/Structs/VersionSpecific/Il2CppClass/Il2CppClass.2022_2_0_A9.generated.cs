@@ -245,7 +245,7 @@ internal unsafe class NativeIl2CppClassStructHandler_2022_2_0_A9 : INativeIl2Cpp
     public string? GetName(Il2CppClass* o)
     {
         var _ = (Il2CppClass_2022_2_0_A9*)o;
-        return _->name == default ? null : Marshal.PtrToStringAnsi((IntPtr)_->name);
+        return _->name == default ? null : Marshal.PtrToStringUTF8((IntPtr)_->name);
     }
 
     public void SetName(Il2CppClass* o, string? value)
@@ -263,7 +263,7 @@ internal unsafe class NativeIl2CppClassStructHandler_2022_2_0_A9 : INativeIl2Cpp
     public string? GetNamespace(Il2CppClass* o)
     {
         var _ = (Il2CppClass_2022_2_0_A9*)o;
-        return _->namespaze == default ? null : Marshal.PtrToStringAnsi((IntPtr)_->namespaze);
+        return _->namespaze == default ? null : Marshal.PtrToStringUTF8((IntPtr)_->namespaze);
     }
 
     public void SetNamespace(Il2CppClass* o, string? value)

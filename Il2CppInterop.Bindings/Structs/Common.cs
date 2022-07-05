@@ -1,3 +1,5 @@
+using AssetRipper.VersionUtilities;
+
 #pragma warning disable CS0649
 #pragma warning disable CS0169
 // ReSharper disable InconsistentNaming
@@ -29,8 +31,29 @@ public struct Il2CppAssembly
 {
 }
 
-public struct Il2CppArray
+public unsafe struct Il2CppArray
 {
+    public static Il2CppArray* New(Il2CppClass* elementClass, int length)
+    {
+        if (UnityVersionHandler.Version >= new UnityVersion(2017, 2, 0, UnityVersionType.Final))
+        {
+            return Il2CppImports.il2cpp_array_new_2017_2_0(elementClass, (nuint)length);
+        }
+
+        return Il2CppImports.il2cpp_array_new_5_2_2(elementClass, length);
+    }
+
+    public static Il2CppArray* NewSpecific(Il2CppClass* arrayClass, int length)
+    {
+        if (UnityVersionHandler.Version >= new UnityVersion(2017, 2, 0, UnityVersionType.Final))
+        {
+            return Il2CppImports.il2cpp_array_new_specific_2017_2_0(arrayClass, (nuint)length);
+        }
+
+        return Il2CppImports.il2cpp_array_new_specific_5_2_2(arrayClass, length);
+    }
+
+    public static uint GetLength(Il2CppArray* array) => Il2CppImports.il2cpp_array_length(array);
 }
 
 public struct Il2CppDomain

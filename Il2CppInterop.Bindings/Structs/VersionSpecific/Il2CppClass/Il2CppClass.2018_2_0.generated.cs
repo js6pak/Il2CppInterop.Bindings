@@ -240,7 +240,7 @@ internal unsafe class NativeIl2CppClassStructHandler_2018_2_0 : INativeIl2CppCla
     public string? GetNamespace(Il2CppClass* o)
     {
         var _ = (Il2CppClass_2018_2_0*)o;
-        return _->namespaze == default ? null : Marshal.PtrToStringAnsi((IntPtr)_->namespaze);
+        return _->namespaze == default ? null : Marshal.PtrToStringUTF8((IntPtr)_->namespaze);
     }
 
     public void SetNamespace(Il2CppClass* o, string? value)

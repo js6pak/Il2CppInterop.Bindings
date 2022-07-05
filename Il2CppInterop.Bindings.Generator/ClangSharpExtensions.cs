@@ -43,7 +43,7 @@ public static class ClangSharpExtensions
             {
                 switch (typedefType.AsString)
                 {
-                    case "size_t" or "uintptr_t ": return "nuint";
+                    case "size_t" or "uintptr_t": return "nuint";
                     case "ptrdiff_t" or "intptr_t": return "nint";
                     // case "methodPointerType": return "Il2CppMethodPointer";
                 }
@@ -103,7 +103,6 @@ public static class ClangSharpExtensions
 
         switch (name)
         {
-            case "Il2CppArray":
             case "Il2CppGenericClass":
             case "Il2CppTypeDefinition":
             case "Il2CppInteropData":

@@ -22,7 +22,7 @@ internal unsafe class NativeIl2CppExceptionStructHandler_2019_3_0 : INativeIl2Cp
         public Il2CppObject* _data;
         public Il2CppException* inner_ex;
         public Il2CppString* _helpURL;
-        public void* trace_ips;
+        public Il2CppArray* trace_ips;
         public Il2CppString* stack_trace;
         public Il2CppString* remote_stack_trace;
         public int remote_stack_index;
@@ -30,8 +30,8 @@ internal unsafe class NativeIl2CppExceptionStructHandler_2019_3_0 : INativeIl2Cp
         public int hresult;
         public Il2CppString* source;
         public Il2CppObject* safeSerializationManager;
-        public void* captured_traces;
-        public void* native_trace_ips;
+        public Il2CppArray* captured_traces;
+        public Il2CppArray* native_trace_ips;
     }
 
     public Il2CppObject* GetObject(Il2CppException* o)

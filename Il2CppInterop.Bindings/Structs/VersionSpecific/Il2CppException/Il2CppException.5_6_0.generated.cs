@@ -17,7 +17,7 @@ internal unsafe class NativeIl2CppExceptionStructHandler_5_6_0 : INativeIl2CppEx
     private struct Il2CppException_5_6_0
     {
         public Il2CppObject @base;
-        public void* trace_ips;
+        public Il2CppArray* trace_ips;
         public Il2CppException* inner_ex;
         public Il2CppString* message;
         public Il2CppString* help_link;
