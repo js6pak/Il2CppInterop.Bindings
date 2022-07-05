@@ -6,7 +6,7 @@ namespace Il2CppInterop.Bindings.Generator.Generators;
 
 public static class ImportsGenerator
 {
-    private static CSharpMethod MakeMethodFor(Il2CppVersion.Function function, UnityVersion startVersion)
+    private static CSharpMethod MakeMethodFor(Il2CppVersion.Function function, UnityVersion startVersion, bool duplicate = false)
     {
         var method = new CSharpMethod(function.ReturnType, function.Name)
         {
@@ -17,7 +17,7 @@ public static class ImportsGenerator
                 new CSharpAttribute("ApplicableToUnityVersionsSince") { new CSharpAttribute.Parameter($"\"{startVersion.ToFriendlyString()}\"") },
                 new CSharpAttribute("DllImport") { new CSharpAttribute.Parameter("\"GameAssembly\"") },
             },
-            Parameters = function.Parameters.Select(static parameter =>
+            Parameters = function.Parameters.Select(parameter =>
             {
                 var name = parameter.Name;
                 if (name == string.Empty && parameter.Type == "Il2CppException*") name = "ex";
@@ -29,7 +29,7 @@ public static class ImportsGenerator
                 UnmanagedType? stringType = null;
                 if (type.StartsWith("byte*")) stringType = UnmanagedType.LPUTF8Str;
                 if (type.StartsWith("char*")) stringType = UnmanagedType.LPWStr;
-                if (stringType != null)
+                if (!function.Name.StartsWith("il2cpp_format_") && stringType != null)
                 {
                     var isArray = type.EndsWith("[]");
                     csharpParameter.Type = isArray ? "string[]" : "string";
@@ -53,14 +53,25 @@ public static class ImportsGenerator
             }).ToList(),
         };
 
+        if (duplicate)
+        {
+            method.Name += "_" + startVersion.ToSanitizedString();
+        }
+
         return method;
     }
 
     public static void Generate(IDictionary<UnityVersion, Il2CppVersion> versions, string outputPath)
     {
-        var ignored = new[] { "init", "unity_liveness", "profiler", "set_find_plugin_callback", "capture_memory_snapshot", "free_captured_memory_snapshot", "delegate", "thread_get_name", "stats", "debug", "register_debugger_agent_transport" };
+        var ignored = new[] { "unity_liveness", "profiler", "set_find_plugin_callback", "capture_memory_snapshot", "free_captured_memory_snapshot", "delegate", "thread_get_name", "stats", "debug", "register_debugger_agent_transport" };
 
-        var methods = new Dictionary<string, CSharpMethod>();
+        var @class = new CSharpClass(Visibility.Internal, "Il2CppImports")
+        {
+            IsStatic = true,
+            IsUnsafe = true,
+        };
+
+        var methods = new Dictionary<string, (UnityVersion UnityVersion, Il2CppVersion.Function Function, CSharpMethod Method)>();
 
         foreach (var (unityVersion, version) in versions)
         {
@@ -75,9 +86,18 @@ public static class ImportsGenerator
 
                 currentFunctions.Add(function.Name);
 
-                if (!methods.ContainsKey(function.Name))
+                if (!methods.TryGetValue(function.Name, out var existingFunction))
                 {
-                    methods.Add(function.Name, MakeMethodFor(function, unityVersion));
+                    var method = MakeMethodFor(function, unityVersion);
+                    @class.Members.Add(method);
+                    methods.Add(function.Name, (unityVersion, function, method));
+                }
+                else if (function != existingFunction.Function)
+                {
+                    existingFunction.Method.Name = existingFunction.Function.Name + "_" + existingFunction.UnityVersion.ToSanitizedString();
+                    var method = MakeMethodFor(function, unityVersion, true);
+                    @class.Members.Insert(@class.Members.IndexOf(existingFunction.Method) + 1, method);
+                    methods[function.Name] = (unityVersion, function, method);
                 }
             }
 
@@ -93,18 +113,10 @@ public static class ImportsGenerator
         var file = new CSharpFile("Il2CppInterop.Bindings")
         {
             Usings = { "System.Runtime.InteropServices", "Il2CppInterop.Bindings.Structs" },
-            Members =
-            {
-                new CSharpClass("IL2CPP")
-                {
-                    IsStatic = true,
-                    IsUnsafe = true,
-                    Members = new List<CSharpType.IMember>(methods.Values),
-                },
-            },
+            Members = { @class },
         };
 
-        file.WriteTo(Path.Combine(outputPath, "IL2CPP.generated.cs"));
+        file.WriteTo(Path.Combine(outputPath, "Il2CppImports.generated.cs"));
 
         Console.WriteLine($"Generated {methods.Count} import methods");
     }

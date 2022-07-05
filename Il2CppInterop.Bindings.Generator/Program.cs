@@ -110,16 +110,21 @@ await Parallel.ForEachAsync(Directory.GetDirectories(sourcesPath), new ParallelO
                     return;
                 }
 
+                // Versions before 5.3.6 used uint16_t instead Il2CppChar (char16_t) which messes with string marshalling
+                var fixIl2CppChar = unityVersion < new UnityVersion(5, 3, 6, UnityVersionType.Final);
+
                 var parameters = new List<Il2CppVersion.Function.Parameter>();
                 foreach (var parameter in function.Parameters)
                 {
                     var parameterType = parameter.Type.ToCSharpString();
-                    if (function.Name == "il2cpp_string_new_utf16" && parameter.Name == "text") parameterType = "char*";
+                    if (fixIl2CppChar && function.Name == "il2cpp_string_new_utf16" && parameter.Name == "text") parameterType = "char*";
                     parameters.Add(new Il2CppVersion.Function.Parameter(parameter.Name.Intern(), parameterType.Intern()));
                 }
 
+                var returnType = function.ReturnType.ToCSharpString().Intern();
+                if (fixIl2CppChar && function.Name == "il2cpp_string_chars") returnType = "char*";
 
-                functions.Add(new Il2CppVersion.Function(function.Name.Intern(), function.ReturnType.ToCSharpString().Intern(), parameters));
+                functions.Add(new Il2CppVersion.Function(function.Name.Intern(), returnType, parameters));
             }
             else if (cursor is RecordDecl record)
             {

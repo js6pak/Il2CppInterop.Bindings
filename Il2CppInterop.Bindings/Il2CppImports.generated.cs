@@ -5,8 +5,16 @@ using Il2CppInterop.Bindings.Structs;
 
 namespace Il2CppInterop.Bindings;
 
-public static unsafe class IL2CPP
+internal static unsafe class Il2CppImports
 {
+    [ApplicableToUnityVersionsSince("5.2.2")]
+    [DllImport("GameAssembly")]
+    public static extern void il2cpp_init_5_2_2([MarshalAs(UnmanagedType.LPUTF8Str)] string domain_name);
+
+    [ApplicableToUnityVersionsSince("2019.1.0")]
+    [DllImport("GameAssembly")]
+    public static extern int il2cpp_init_2019_1_0([MarshalAs(UnmanagedType.LPUTF8Str)] string domain_name);
+
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
     public static extern void il2cpp_shutdown();
@@ -61,15 +69,27 @@ public static unsafe class IL2CPP
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void* il2cpp_array_new(Il2CppClass* elementTypeInfo, int length);
+    public static extern void* il2cpp_array_new_5_2_2(Il2CppClass* elementTypeInfo, int length);
+
+    [ApplicableToUnityVersionsSince("2017.2.0")]
+    [DllImport("GameAssembly")]
+    public static extern void* il2cpp_array_new_2017_2_0(Il2CppClass* elementTypeInfo, ulong length);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void* il2cpp_array_new_specific(Il2CppClass* arrayTypeInfo, int length);
+    public static extern void* il2cpp_array_new_specific_5_2_2(Il2CppClass* arrayTypeInfo, int length);
+
+    [ApplicableToUnityVersionsSince("2017.2.0")]
+    [DllImport("GameAssembly")]
+    public static extern void* il2cpp_array_new_specific_2017_2_0(Il2CppClass* arrayTypeInfo, ulong length);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void* il2cpp_array_new_full(Il2CppClass* array_class, int* lengths, int* lower_bounds);
+    public static extern void* il2cpp_array_new_full_5_2_2(Il2CppClass* array_class, int* lengths, int* lower_bounds);
+
+    [ApplicableToUnityVersionsSince("2017.2.0")]
+    [DllImport("GameAssembly")]
+    public static extern void* il2cpp_array_new_full_2017_2_0(Il2CppClass* array_class, ulong* lengths, ulong* lower_bounds);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -265,11 +285,11 @@ public static unsafe class IL2CPP
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_format_exception(Il2CppException* ex, [MarshalAs(UnmanagedType.LPUTF8Str)] string message, int message_size);
+    public static extern void il2cpp_format_exception(Il2CppException* ex, byte* message, int message_size);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_format_stack_trace(Il2CppException* ex, [MarshalAs(UnmanagedType.LPUTF8Str)] string output, int output_size);
+    public static extern void il2cpp_format_stack_trace(Il2CppException* ex, byte* output, int output_size);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -477,11 +497,19 @@ public static unsafe class IL2CPP
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke(MethodInfo* method, void* obj, void** @params, Il2CppObject** exc);
+    public static extern Il2CppObject* il2cpp_runtime_invoke_5_2_2(MethodInfo* method, void* obj, void** @params, Il2CppObject** exc);
+
+    [ApplicableToUnityVersionsSince("5.3.5")]
+    [DllImport("GameAssembly")]
+    public static extern Il2CppObject* il2cpp_runtime_invoke_5_3_5(MethodInfo* method, void* obj, void** @params, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args(MethodInfo* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppObject** exc);
+    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args_5_2_2(MethodInfo* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppObject** exc);
+
+    [ApplicableToUnityVersionsSince("5.3.5")]
+    [DllImport("GameAssembly")]
+    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args_5_3_5(MethodInfo* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -493,7 +521,11 @@ public static unsafe class IL2CPP
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_runtime_object_init_exception(Il2CppObject* obj, Il2CppObject** exc);
+    public static extern void il2cpp_runtime_object_init_exception_5_2_2(Il2CppObject* obj, Il2CppObject** exc);
+
+    [ApplicableToUnityVersionsSince("5.3.5")]
+    [DllImport("GameAssembly")]
+    public static extern void il2cpp_runtime_object_init_exception_5_3_5(Il2CppObject* obj, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -505,7 +537,7 @@ public static unsafe class IL2CPP
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern ushort* il2cpp_string_chars(Il2CppString* str);
+    public static extern char* il2cpp_string_chars(Il2CppString* str);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -630,6 +662,14 @@ public static unsafe class IL2CPP
     [ApplicableToUnityVersionsSince("5.3.5")]
     [DllImport("GameAssembly")]
     public static extern void il2cpp_gc_enable();
+
+    [ApplicableToUnityVersionsSince("5.5.0")]
+    [DllImport("GameAssembly")]
+    public static extern void il2cpp_init_utf16_5_5_0([MarshalAs(UnmanagedType.LPWStr)] string domain_name);
+
+    [ApplicableToUnityVersionsSince("2019.1.0")]
+    [DllImport("GameAssembly")]
+    public static extern int il2cpp_init_utf16_2019_1_0([MarshalAs(UnmanagedType.LPWStr)] string domain_name);
 
     [ApplicableToUnityVersionsSince("5.5.0")]
     [DllImport("GameAssembly")]
@@ -841,7 +881,11 @@ public static unsafe class IL2CPP
 
     [ApplicableToUnityVersionsSince("2020.1.0")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_native_stack_trace(Il2CppException* ex, ulong** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageUUID);
+    public static extern void il2cpp_native_stack_trace_2020_1_0(Il2CppException* ex, ulong** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageUUID);
+
+    [ApplicableToUnityVersionsSince("2021.2.0")]
+    [DllImport("GameAssembly")]
+    public static extern void il2cpp_native_stack_trace_2021_2_0(Il2CppException* ex, ulong** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageUUID, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageName);
 
     [ApplicableToUnityVersionsSince("2020.2.0")]
     [DllImport("GameAssembly")]
