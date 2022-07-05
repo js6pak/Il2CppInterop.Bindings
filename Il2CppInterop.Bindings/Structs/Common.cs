@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 #pragma warning disable CS0649
 #pragma warning disable CS0169
 // ReSharper disable InconsistentNaming
@@ -44,10 +42,12 @@ public unsafe struct Il2CppImage
     public static Il2CppImage* Corlib => Il2CppImports.il2cpp_get_corlib();
 }
 
-public unsafe struct Il2CppException
+public unsafe partial struct Il2CppException
 {
+#if DISABLE_SHORTCUTS
     [ThreadStatic]
     private static byte[]? _buffer;
+#endif
 
     public static void Raise(Il2CppException* ex) => Il2CppImports.il2cpp_raise_exception(ex);
 
@@ -61,10 +61,18 @@ public unsafe struct Il2CppException
         fixed (byte* message = _buffer)
         {
             Il2CppImports.il2cpp_format_exception(ex, message, _buffer.Length);
-            return new string((sbyte*)message);
+            return Marshal.PtrToStringUTF8((IntPtr)message)!;
         }
 #else
-        throw new NotImplementedException();
+        var klass = ex->Object->Class;
+        var fullName = klass->Namespace + "." + klass->Name;
+
+        if (ex->Message != default)
+        {
+            return fullName + ": " + ex->Message->ToString();
+        }
+
+        return fullName;
 #endif
     }
 
@@ -75,10 +83,15 @@ public unsafe struct Il2CppException
         fixed (byte* message = _buffer)
         {
             Il2CppImports.il2cpp_format_stack_trace(ex, message, _buffer.Length);
-            return new string((sbyte*)message);
+            return Marshal.PtrToStringUTF8((IntPtr)message)!;
         }
 #else
-        throw new NotImplementedException();
+        if (ex->StackTrace != default)
+        {
+            return ex->StackTrace->ToString();
+        }
+
+        return string.Empty;
 #endif
     }
 }
@@ -137,7 +150,7 @@ public unsafe struct Il2CppString
 
     public override string ToString()
     {
-        return new string(Chars);
+        return new string(chars, 0, length);
     }
 
     public static Il2CppString* From(string value)
@@ -165,7 +178,11 @@ public unsafe struct Il2CppThread
 
     public static Il2CppThread** GetAllAttachedThreads(out nuint size)
     {
-        return Il2CppImports.il2cpp_thread_get_all_attached_threads((nuint*)Unsafe.AsPointer(ref size));
+        size = 0;
+        fixed (nuint* sizePointer = &size)
+        {
+            return Il2CppImports.il2cpp_thread_get_all_attached_threads(sizePointer);
+        }
     }
 
     public static bool IsVmThread(Il2CppThread* thread) => Il2CppImports.il2cpp_is_vm_thread(thread);

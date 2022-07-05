@@ -6,11 +6,14 @@ using System.Runtime.CompilerServices;
 
 namespace Il2CppInterop.Bindings.Structs;
 
-public unsafe struct Il2CppClass
+public unsafe partial struct Il2CppClass
 {
     public static int Size => UnityVersionHandler.Il2CppClass.Size;
     public Il2CppClass* Pointer => (Il2CppClass*)Unsafe.AsPointer(ref this);
 
     public string? Name { get => UnityVersionHandler.Il2CppClass.GetName(Pointer); set => UnityVersionHandler.Il2CppClass.SetName(Pointer, value); }
     public ref byte* NamePointer => ref UnityVersionHandler.Il2CppClass.GetNamePointer(Pointer);
+
+    public string? Namespace { get => UnityVersionHandler.Il2CppClass.GetNamespace(Pointer); set => UnityVersionHandler.Il2CppClass.SetNamespace(Pointer, value); }
+    public ref byte* NamespacePointer => ref UnityVersionHandler.Il2CppClass.GetNamespacePointer(Pointer);
 }

@@ -128,6 +128,12 @@ await Parallel.ForEachAsync(Directory.GetDirectories(sourcesPath), new ParallelO
             }
             else if (cursor is RecordDecl record)
             {
+                // Ignore empty structs from il2cpp-api-types.h and il2cpp-object-internals.h
+                if (!record.Fields.Any())
+                {
+                    return;
+                }
+
                 var name = StructsGenerator.RenameStruct(record.TypeForDecl.AsString);
                 var fields = new List<Il2CppVersion.Struct.Field>();
 
@@ -141,7 +147,7 @@ await Parallel.ForEachAsync(Directory.GetDirectories(sourcesPath), new ParallelO
                         {
                             for (var field = layout->FirstField; field != null; field = field->NextField)
                             {
-                                if (field->Kind == PathogenRecordFieldKind.Normal)
+                                if (field->Kind is PathogenRecordFieldKind.Normal or PathogenRecordFieldKind.NonVirtualBase)
                                 {
                                     var type = translationUnit.FindType(field->Type);
 

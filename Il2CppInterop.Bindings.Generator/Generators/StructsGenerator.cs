@@ -15,6 +15,7 @@ public static class StructsGenerator
     public static StructGenerator[] Generators { get; } =
     {
         new Il2CppClassGenerator(),
+        new Il2CppExceptionGenerator(),
     };
 
     public static StructGenerator GetGeneratorByName(string className)
@@ -30,7 +31,7 @@ public static class StructsGenerator
 
             foreach (var (unityVersion, version) in versions)
             {
-                var current = version.Structs.Where(x => x.Fields.Any()).Single(x => x.Name == structGenerator.StructName);
+                var current = version.Structs.Single(x => x.Name == structGenerator.StructName);
 
                 if (last == null || last != current)
                 {

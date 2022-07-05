@@ -108,7 +108,7 @@ public abstract class StructGenerator
         foreach (var field in Fields)
         {
             var structField = @struct.Fields.Single(f => field.NativeFieldNames.Contains(f.Name));
-            @class.Members.AddRange(field.GetMethods(this, new FieldContext(structName, structField.Name)));
+            @class.Members.AddRange(field.GetMethods(this, new FieldContext(structName, CodeWriter.SanitizeIdentifier(structField.Name))));
         }
 
         return new CSharpFile(Namespace)
@@ -157,6 +157,7 @@ public abstract class StructGenerator
         var @struct = new CSharpStruct(StructName)
         {
             IsUnsafe = true,
+            IsPartial = true,
             Members =
             {
                 new CSharpProperty("int", "Size")
@@ -218,7 +219,7 @@ public abstract class StructGenerator
 
     public record FieldContext(string StructName, string FieldName)
     {
-        public string StoreCast { get; } = $"var _ = ({StructName}*)klass;";
+        public string StoreCast { get; } = $"var _ = ({StructName}*)o;";
     }
 
     public abstract record Field(string Name, string[] NativeFieldNames)
@@ -236,7 +237,7 @@ public abstract class StructGenerator
 
         public virtual IEnumerable<CSharpMethod> GetMethods(StructGenerator structGenerator, FieldContext? context)
         {
-            var structParameter = new CSharpParameter(structGenerator.StructName + "*", "klass");
+            var structParameter = new CSharpParameter(structGenerator.StructName + "*", "o");
 
             yield return new CSharpMethod(Type, "Get" + Name)
             {
@@ -274,6 +275,39 @@ public abstract class StructGenerator
         }
     }
 
+    public record NormalField(string Type, string Name, string[] NativeFieldNames) : Field(Name, NativeFieldNames)
+    {
+        public override string Type { get; } = Type;
+    }
+
+    public record PointerField(string Type, string Name, string[] NativeFieldNames) : Field(Name, NativeFieldNames)
+    {
+        public override string Type { get; } = Type;
+
+        public override IEnumerable<CSharpProperty> GetProperties(StructGenerator structGenerator)
+        {
+            yield return new CSharpProperty(Type + "*", Name)
+            {
+                Getter = new CSharpProperty.Accessor { Body = writer => writer.Write($"UnityVersionHandler.{structGenerator.StructName}.Get{Name}(Pointer);") },
+            };
+        }
+
+        public override IEnumerable<CSharpMethod> GetMethods(StructGenerator structGenerator, FieldContext? context)
+        {
+            yield return new CSharpMethod(Type + "*", "Get" + Name)
+            {
+                Parameters = { new CSharpParameter(structGenerator.StructName + "*", "o") },
+                Body = context == null
+                    ? null
+                    : writer =>
+                    {
+                        writer.WriteLine(context.StoreCast);
+                        writer.WriteLine($"return &_->{context.FieldName};");
+                    },
+            };
+        }
+    }
+
     public record StringField(string Name, string[] NativeFieldNames) : Field(Name, NativeFieldNames)
     {
         public override string Type => "string?";
@@ -295,7 +329,7 @@ public abstract class StructGenerator
 
             yield return new CSharpMethod("ref " + NativeType, "Get" + Name + "Pointer")
             {
-                Parameters = { new CSharpParameter(structGenerator.StructName + "*", "klass") },
+                Parameters = { new CSharpParameter(structGenerator.StructName + "*", "o") },
                 Body = context == null
                     ? null
                     : writer =>
@@ -308,7 +342,7 @@ public abstract class StructGenerator
 
         protected override void WriteGetterBody(CodeWriter writer, FieldContext context)
         {
-            writer.WriteLine($"return _->{context.FieldName} == default ? null : Marshal.PtrToStringAnsi((IntPtr)_->{context.FieldName});");
+            writer.WriteLine($"return _->{context.FieldName} == default ? null : Marshal.PtrToStringUTF8((IntPtr)_->{context.FieldName});");
         }
 
         protected override void WriteSetterBody(CodeWriter writer, FieldContext context)

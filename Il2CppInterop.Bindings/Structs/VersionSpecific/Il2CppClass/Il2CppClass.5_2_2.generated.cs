@@ -180,21 +180,39 @@ internal unsafe class NativeIl2CppClassStructHandler_5_2_2 : INativeIl2CppClassS
         }
     }
 
-    public string? GetName(Il2CppClass* klass)
+    public string? GetName(Il2CppClass* o)
     {
-        var _ = (Il2CppClass_5_2_2*)klass;
+        var _ = (Il2CppClass_5_2_2*)o;
         return _->name == default ? null : Marshal.PtrToStringAnsi((IntPtr)_->name);
     }
 
-    public void SetName(Il2CppClass* klass, string? value)
+    public void SetName(Il2CppClass* o, string? value)
     {
-        var _ = (Il2CppClass_5_2_2*)klass;
+        var _ = (Il2CppClass_5_2_2*)o;
         _->name = value == null ? default : (byte*)Marshal.StringToHGlobalAnsi(value);
     }
 
-    public ref byte* GetNamePointer(Il2CppClass* klass)
+    public ref byte* GetNamePointer(Il2CppClass* o)
     {
-        var _ = (Il2CppClass_5_2_2*)klass;
+        var _ = (Il2CppClass_5_2_2*)o;
         return ref _->name;
+    }
+
+    public string? GetNamespace(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_5_2_2*)o;
+        return _->namespaze == default ? null : Marshal.PtrToStringAnsi((IntPtr)_->namespaze);
+    }
+
+    public void SetNamespace(Il2CppClass* o, string? value)
+    {
+        var _ = (Il2CppClass_5_2_2*)o;
+        _->namespaze = value == null ? default : (byte*)Marshal.StringToHGlobalAnsi(value);
+    }
+
+    public ref byte* GetNamespacePointer(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_5_2_2*)o;
+        return ref _->namespaze;
     }
 }

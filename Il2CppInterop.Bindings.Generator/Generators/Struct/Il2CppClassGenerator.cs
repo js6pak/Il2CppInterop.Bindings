@@ -7,5 +7,6 @@ internal class Il2CppClassGenerator : StructGenerator
     public override Field[] Fields { get; } =
     {
         new StringField("Name", new[] { "name" }),
+        new StringField("Namespace", new[] { "namespaze" }),
     };
 }

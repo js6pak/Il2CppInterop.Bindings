@@ -2,12 +2,14 @@
 
 using AssetRipper.VersionUtilities;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppClass;
+using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppException;
 
 namespace Il2CppInterop.Bindings;
 
 public static partial class UnityVersionHandler
 {
     public static INativeIl2CppClassStructHandler Il2CppClass { get; private set; }
+    public static INativeIl2CppExceptionStructHandler Il2CppException { get; private set; }
 
     private static void InitializeNativeStructHandlers(UnityVersion unityVersion)
     {
@@ -30,5 +32,11 @@ public static partial class UnityVersionHandler
         else if (unityVersion >= new UnityVersion(5, 3, 3)) Il2CppClass = new NativeIl2CppClassStructHandler_5_3_3();
         else if (unityVersion >= new UnityVersion(5, 3, 2)) Il2CppClass = new NativeIl2CppClassStructHandler_5_3_2();
         else if (unityVersion >= new UnityVersion(5, 2, 2)) Il2CppClass = new NativeIl2CppClassStructHandler_5_2_2();
+
+        if (unityVersion >= new UnityVersion(2021, 2, 0)) Il2CppException = new NativeIl2CppExceptionStructHandler_2021_2_0();
+        else if (unityVersion >= new UnityVersion(2019, 3, 0)) Il2CppException = new NativeIl2CppExceptionStructHandler_2019_3_0();
+        else if (unityVersion >= new UnityVersion(5, 6, 0)) Il2CppException = new NativeIl2CppExceptionStructHandler_5_6_0();
+        else if (unityVersion >= new UnityVersion(5, 3, 5)) Il2CppException = new NativeIl2CppExceptionStructHandler_5_3_5();
+        else if (unityVersion >= new UnityVersion(5, 2, 2)) Il2CppException = new NativeIl2CppExceptionStructHandler_5_2_2();
     }
 }

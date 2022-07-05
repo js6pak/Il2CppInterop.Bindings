@@ -8,9 +8,15 @@ using Il2CppClass = Il2CppInterop.Bindings.Structs.Il2CppClass;
 
 public unsafe interface INativeIl2CppClassStructHandler : INativeStructHandler
 {
-    public string? GetName(Il2CppClass* klass);
+    public string? GetName(Il2CppClass* o);
 
-    public void SetName(Il2CppClass* klass, string? value);
+    public void SetName(Il2CppClass* o, string? value);
 
-    public ref byte* GetNamePointer(Il2CppClass* klass);
+    public ref byte* GetNamePointer(Il2CppClass* o);
+
+    public string? GetNamespace(Il2CppClass* o);
+
+    public void SetNamespace(Il2CppClass* o, string? value);
+
+    public ref byte* GetNamespacePointer(Il2CppClass* o);
 }
