@@ -113,11 +113,15 @@ await Parallel.ForEachAsync(Directory.GetDirectories(sourcesPath), new ParallelO
                 // Versions before 5.3.6 used uint16_t instead Il2CppChar (char16_t) which messes with string marshalling
                 var fixIl2CppChar = unityVersion < new UnityVersion(5, 3, 6, UnityVersionType.Final);
 
+                // Versions before 5.3.5 used Il2CppObject instead Il2CppException in api
+                var fixExceptionType = unityVersion < new UnityVersion(5, 3, 5, UnityVersionType.Final);
+
                 var parameters = new List<Il2CppVersion.Function.Parameter>();
                 foreach (var parameter in function.Parameters)
                 {
                     var parameterType = parameter.Type.ToCSharpString();
                     if (fixIl2CppChar && function.Name == "il2cpp_string_new_utf16" && parameter.Name == "text") parameterType = "char*";
+                    if (fixExceptionType && function.Name is "il2cpp_runtime_invoke" or "il2cpp_runtime_invoke_convert_args" or "il2cpp_runtime_object_init_exception" && parameter.Name == "exc") parameterType = "Il2CppException**";
                     parameters.Add(new Il2CppVersion.Function.Parameter(parameter.Name.Intern(), parameterType.Intern()));
                 }
 

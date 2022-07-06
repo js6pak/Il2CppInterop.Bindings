@@ -497,19 +497,11 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke_5_2_2(MethodInfo* method, void* obj, void** @params, Il2CppObject** exc);
-
-    [ApplicableToUnityVersionsSince("5.3.5")]
-    [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke_5_3_5(MethodInfo* method, void* obj, void** @params, Il2CppException** exc);
+    public static extern Il2CppObject* il2cpp_runtime_invoke(MethodInfo* method, void* obj, void** @params, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args_5_2_2(MethodInfo* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppObject** exc);
-
-    [ApplicableToUnityVersionsSince("5.3.5")]
-    [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args_5_3_5(MethodInfo* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppException** exc);
+    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args(MethodInfo* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -521,11 +513,7 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_runtime_object_init_exception_5_2_2(Il2CppObject* obj, Il2CppObject** exc);
-
-    [ApplicableToUnityVersionsSince("5.3.5")]
-    [DllImport("GameAssembly")]
-    public static extern void il2cpp_runtime_object_init_exception_5_3_5(Il2CppObject* obj, Il2CppException** exc);
+    public static extern void il2cpp_runtime_object_init_exception(Il2CppObject* obj, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
