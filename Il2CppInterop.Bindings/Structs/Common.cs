@@ -134,7 +134,7 @@ public unsafe struct Il2CppObject
     public static void* Unbox(Il2CppObject* obj)
     {
 #if DISABLE_SHORTCUTS
-        return IL2CPP.il2cpp_object_unbox(obj);
+        return Il2CppImports.il2cpp_object_unbox(obj);
 #else
         void* val = (byte*)obj + sizeof(Il2CppObject);
         return val;
@@ -144,6 +144,15 @@ public unsafe struct Il2CppObject
     public static Il2CppObject* Box(Il2CppClass* klass, void* data)
     {
         return Il2CppImports.il2cpp_value_box(klass, data);
+    }
+
+    public static void* GetClass(Il2CppObject* obj)
+    {
+#if DISABLE_SHORTCUTS
+        return Il2CppImports.il2cpp_object_get_class(obj);
+#else
+        return obj->Class;
+#endif
     }
 }
 
