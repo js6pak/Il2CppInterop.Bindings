@@ -8,6 +8,13 @@ public static class ImportsGenerator
 {
     private static CSharpMethod MakeMethodFor(Il2CppVersion.Function function, UnityVersion startVersion, bool duplicate = false)
     {
+        var dllImportAttribute = new CSharpAttribute("DllImport") { new CSharpAttribute.Parameter("\"GameAssembly\"") };
+
+        if (duplicate)
+        {
+            dllImportAttribute.Add(new CSharpAttribute.Property("EntryPoint", $"\"{function.Name}\""));
+        }
+
         var method = new CSharpMethod(function.ReturnType, function.Name)
         {
             IsStatic = true,
@@ -15,7 +22,7 @@ public static class ImportsGenerator
             Attributes =
             {
                 new CSharpAttribute("ApplicableToUnityVersionsSince") { new CSharpAttribute.Parameter($"\"{startVersion.ToFriendlyString()}\"") },
-                new CSharpAttribute("DllImport") { new CSharpAttribute.Parameter("\"GameAssembly\"") },
+                dllImportAttribute,
             },
             Parameters = function.Parameters.Select(parameter =>
             {
@@ -94,9 +101,10 @@ public static class ImportsGenerator
                 }
                 else if (function != existingFunction.Function)
                 {
-                    existingFunction.Method.Name = existingFunction.Function.Name + "_" + existingFunction.UnityVersion.ToSanitizedString();
+                    var indexOf = @class.Members.IndexOf(existingFunction.Method);
+                    @class.Members[indexOf] = existingFunction.Method = MakeMethodFor(existingFunction.Function, existingFunction.UnityVersion, true);
                     var method = MakeMethodFor(function, unityVersion, true);
-                    @class.Members.Insert(@class.Members.IndexOf(existingFunction.Method) + 1, method);
+                    @class.Members.Insert(indexOf + 1, method);
                     methods[function.Name] = (unityVersion, function, method);
                 }
             }
