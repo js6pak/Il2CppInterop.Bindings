@@ -1,10 +1,23 @@
 using System.IO.Compression;
-using Octokit;
+using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 
 namespace Il2CppInterop.Bindings.Generator;
 
 public static class SourceManager
 {
+    private record CaddyIndexFile(
+        [property: JsonPropertyName("name")] string Name,
+        [property: JsonPropertyName("size")] long Size,
+        [property: JsonPropertyName("url")] string Url,
+        [property: JsonPropertyName("mod_time")] DateTimeOffset ModificationTime,
+        [property: JsonPropertyName("mode")] ushort Mode,
+        [property: JsonPropertyName("is_dir")] bool IsDirectory,
+        [property: JsonPropertyName("is_symlink")] bool IsSymlink
+    );
+
+    private const string BaseUrl = "https://unity.bepinex.dev/libil2cpp-source";
+
     public static async Task<string> EnsureExists()
     {
         const string sourcesPath = "libil2cpp-source";
@@ -18,13 +31,15 @@ public static class SourceManager
             try
             {
                 var httpClient = new HttpClient();
-                var gitHubClient = new GitHubClient(new ProductHeaderValue("Il2CppInterop.Bindings.Generator"));
-                var files = await gitHubClient.Repository.Content.GetAllContents("bepin-bot", "UnityDataMine", "libil2cpp-source/");
+
+                httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+                var files = await httpClient.GetFromJsonAsync<CaddyIndexFile[]>(BaseUrl) ?? throw new Exception("Failed to download file index");
 
                 await Parallel.ForEachAsync(files.Where(f => f.Name.EndsWith(".zip")), async (file, token) =>
                 {
-                    Console.WriteLine("Downloading " + file.DownloadUrl);
-                    var response = await httpClient.GetAsync(file.DownloadUrl, token);
+                    var downloadUrl = Path.Combine(BaseUrl, file.Url);
+                    Console.WriteLine("Downloading " + downloadUrl);
+                    var response = await httpClient.GetAsync(downloadUrl, token);
 
                     var zipPath = Path.Join(sourcesPath, file.Name);
 
