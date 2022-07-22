@@ -116,6 +116,17 @@ public static class ClangSharpExtensions
                 return "void";
         }
 
+        if (clangType.AsTagDecl is CXXRecordDecl { IsAnonymousStructOrUnion: true, IsUnion: true })
+        {
+            var fields = clangType.AsCXXRecordDecl.Fields;
+            if (fields.Any() && fields.All(f => f.Type.IsPointerType))
+            {
+                return "void*";
+            }
+
+            throw new NotImplementedException();
+        }
+
         return StructsGenerator.RenameStruct(name);
     }
 

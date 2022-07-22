@@ -27,6 +27,7 @@ public abstract class StructGenerator
 
         var csharpStruct = new CSharpStruct(Visibility.Private, structName);
 
+        var anonCount = 0;
         var bitFieldCount = -1;
         foreach (var field in @struct.Fields)
         {
@@ -84,7 +85,7 @@ public abstract class StructGenerator
             }
             else
             {
-                csharpStruct.Add(new CSharpField(type, field.Name));
+                csharpStruct.Add(new CSharpField(type, string.IsNullOrEmpty(field.Name) ? $"anon{anonCount++}" : field.Name));
             }
         }
 
