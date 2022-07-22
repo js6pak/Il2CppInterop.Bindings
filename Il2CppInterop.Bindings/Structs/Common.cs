@@ -57,7 +57,7 @@ public unsafe struct Il2CppField
         return Marshal.PtrToStringUTF8((IntPtr)field->name)!;
 #endif
     }
-    
+
     public static int GetOffset(Il2CppField* field)
     {
 #if DISABLE_SHORTCUTS
@@ -196,6 +196,17 @@ public unsafe partial struct Il2CppClass
 
         return default;
 #endif
+    }
+
+    public static bool IsValueType(Il2CppClass* klass)
+    {
+        return Il2CppImports.il2cpp_class_is_valuetype(klass);
+    }
+
+    public static int GetValueSize(Il2CppClass* klass)
+    {
+        if (!IsValueType(klass)) throw new ArgumentException("GetValueSize can only be called on ValueTypes");
+        return Il2CppImports.il2cpp_class_value_size(klass, default);
     }
 }
 
