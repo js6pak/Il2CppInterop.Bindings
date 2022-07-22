@@ -8,7 +8,7 @@ public static class ImportsGenerator
 {
     private static CSharpMethod MakeMethodFor(Il2CppVersion.Function function, UnityVersion startVersion, bool duplicate = false)
     {
-        var dllImportAttribute = new CSharpAttribute("DllImport") { new CSharpAttribute.Parameter("\"GameAssembly\"") };
+        var dllImportAttribute = new CSharpAttribute("LibraryImportAttribute") { new CSharpAttribute.Parameter("\"GameAssembly\"") };
 
         if (duplicate)
         {
@@ -18,7 +18,7 @@ public static class ImportsGenerator
         var method = new CSharpMethod(function.ReturnType, function.Name)
         {
             IsStatic = true,
-            IsExtern = true,
+            IsPartial = true,
             Attributes =
             {
                 new CSharpAttribute("ApplicableToUnityVersionsSince") { new CSharpAttribute.Parameter($"\"{startVersion.ToFriendlyString()}\"") },
@@ -56,9 +56,25 @@ public static class ImportsGenerator
                     csharpParameter.Attributes.Add(attribute);
                 }
 
+                if (type == "bool")
+                {
+                    csharpParameter.Attributes.Add(new CSharpAttribute("MarshalAs")
+                    {
+                        new CSharpAttribute.Parameter("UnmanagedType.U1"),
+                    });
+                }
+
                 return csharpParameter;
             }).ToList(),
         };
+
+        if (function.ReturnType == "bool")
+        {
+            method.Attributes.Add(new CSharpAttribute("return: MarshalAs")
+            {
+                new CSharpAttribute.Parameter("UnmanagedType.U1"),
+            });
+        }
 
         if (duplicate)
         {
@@ -76,6 +92,7 @@ public static class ImportsGenerator
         {
             IsStatic = true,
             IsUnsafe = true,
+            IsPartial = true,
         };
 
         var methods = new Dictionary<string, (UnityVersion UnityVersion, Il2CppVersion.Function Function, CSharpMethod Method)>();

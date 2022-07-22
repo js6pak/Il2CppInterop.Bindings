@@ -11,7 +11,8 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.x
+        dotnet-version: 7.x
+        include-prerelease: true
     - name: Test
       run: | 
         dotnet run -c Release --project ./Il2CppInterop.Bindings.Generator ./Il2CppInterop.Bindings
