@@ -6,9 +6,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppClass;
-
-using Il2CppClass = Il2CppInterop.Bindings.Structs.Il2CppClass;
+namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppClassHandlers;
 
 internal unsafe class NativeIl2CppClassStructHandler_2018_3_8 : INativeIl2CppClassStructHandler
 {
@@ -30,10 +28,10 @@ internal unsafe class NativeIl2CppClassStructHandler_2018_3_8 : INativeIl2CppCla
         public void* typeDefinition;
         public void* interopData;
         public Il2CppClass* klass;
-        public FieldInfo* fields;
-        public EventInfo* events;
-        public PropertyInfo* properties;
-        public MethodInfo** methods;
+        public Il2CppField* fields;
+        public Il2CppEvent* events;
+        public Il2CppProperty* properties;
+        public Il2CppMethod** methods;
         public Il2CppClass** nestedTypes;
         public Il2CppClass** implementedInterfaces;
         public Il2CppRuntimeInterfaceOffsetPair* interfaceOffsets;
@@ -264,5 +262,119 @@ internal unsafe class NativeIl2CppClassStructHandler_2018_3_8 : INativeIl2CppCla
     {
         var _ = (Il2CppClass_2018_3_8*)o;
         return ref _->namespaze;
+    }
+
+    public bool GetIsGeneric(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->is_generic != 0 ? true : false;
+    }
+
+    public void SetIsGeneric(Il2CppClass* o, bool value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->is_generic = (byte)(value ? 1 : 0);
+    }
+
+    public bool GetIsSizeInitialized(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->size_inited != 0 ? true : false;
+    }
+
+    public void SetIsSizeInitialized(Il2CppClass* o, bool value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->size_inited = (byte)(value ? 1 : 0);
+    }
+
+    public Il2CppType* GetByVal(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return &_->byval_arg;
+    }
+
+    public Il2CppClass** GetNestedTypes(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->nestedTypes;
+    }
+
+    public void SetNestedTypes(Il2CppClass* o, Il2CppClass** value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->nestedTypes = value;
+    }
+
+    public ushort GetNestedTypeCount(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->nested_type_count;
+    }
+
+    public void SetNestedTypeCount(Il2CppClass* o, ushort value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->nested_type_count = value;
+    }
+
+    public Il2CppMethod** GetMethods(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->methods;
+    }
+
+    public void SetMethods(Il2CppClass* o, Il2CppMethod** value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->methods = value;
+    }
+
+    public ushort GetMethodCount(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->method_count;
+    }
+
+    public void SetMethodCount(Il2CppClass* o, ushort value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->method_count = value;
+    }
+
+    public Il2CppField* GetFields(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->fields;
+    }
+
+    public void SetFields(Il2CppClass* o, Il2CppField* value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->fields = value;
+    }
+
+    public ushort GetFieldCount(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->field_count;
+    }
+
+    public void SetFieldCount(Il2CppClass* o, ushort value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->field_count = value;
+    }
+
+    public byte GetRank(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        return _->rank;
+    }
+
+    public void SetRank(Il2CppClass* o, byte value)
+    {
+        var _ = (Il2CppClass_2018_3_8*)o;
+        _->rank = value;
     }
 }

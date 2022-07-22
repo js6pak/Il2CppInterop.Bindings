@@ -6,9 +6,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppException;
-
-using Il2CppException = Il2CppInterop.Bindings.Structs.Il2CppException;
+namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppExceptionHandlers;
 
 internal unsafe class NativeIl2CppExceptionStructHandler_2019_3_0 : INativeIl2CppExceptionStructHandler
 {

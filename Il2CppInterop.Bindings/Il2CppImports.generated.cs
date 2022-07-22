@@ -8,11 +8,11 @@ namespace Il2CppInterop.Bindings;
 internal static unsafe class Il2CppImports
 {
     [ApplicableToUnityVersionsSince("5.2.2")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_init")]
     public static extern void il2cpp_init_5_2_2([MarshalAs(UnmanagedType.LPUTF8Str)] string domain_name);
 
     [ApplicableToUnityVersionsSince("2019.1.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_init")]
     public static extern int il2cpp_init_2019_1_0([MarshalAs(UnmanagedType.LPUTF8Str)] string domain_name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
@@ -68,27 +68,27 @@ internal static unsafe class Il2CppImports
     public static extern uint il2cpp_array_get_byte_length(Il2CppArray* array);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_array_new")]
     public static extern Il2CppArray* il2cpp_array_new_5_2_2(Il2CppClass* elementTypeInfo, int length);
 
     [ApplicableToUnityVersionsSince("2017.2.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_array_new")]
     public static extern Il2CppArray* il2cpp_array_new_2017_2_0(Il2CppClass* elementTypeInfo, nuint length);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_array_new_specific")]
     public static extern Il2CppArray* il2cpp_array_new_specific_5_2_2(Il2CppClass* arrayTypeInfo, int length);
 
     [ApplicableToUnityVersionsSince("2017.2.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_array_new_specific")]
     public static extern Il2CppArray* il2cpp_array_new_specific_2017_2_0(Il2CppClass* arrayTypeInfo, nuint length);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_array_new_full")]
     public static extern Il2CppArray* il2cpp_array_new_full_5_2_2(Il2CppClass* array_class, int* lengths, int* lower_bounds);
 
     [ApplicableToUnityVersionsSince("2017.2.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_array_new_full")]
     public static extern Il2CppArray* il2cpp_array_new_full_2017_2_0(Il2CppClass* array_class, nuint* lengths, nuint* lower_bounds);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
@@ -145,11 +145,11 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern EventInfo* il2cpp_class_get_events(Il2CppClass* klass, void** iter);
+    public static extern Il2CppEvent* il2cpp_class_get_events(Il2CppClass* klass, void** iter);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern FieldInfo* il2cpp_class_get_fields(Il2CppClass* klass, void** iter);
+    public static extern Il2CppField* il2cpp_class_get_fields(Il2CppClass* klass, void** iter);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -157,23 +157,23 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern PropertyInfo* il2cpp_class_get_properties(Il2CppClass* klass, void** iter);
+    public static extern Il2CppProperty* il2cpp_class_get_properties(Il2CppClass* klass, void** iter);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern PropertyInfo* il2cpp_class_get_property_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    public static extern Il2CppProperty* il2cpp_class_get_property_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern FieldInfo* il2cpp_class_get_field_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    public static extern Il2CppField* il2cpp_class_get_field_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern MethodInfo* il2cpp_class_get_methods(Il2CppClass* klass, void** iter);
+    public static extern Il2CppMethod* il2cpp_class_get_methods(Il2CppClass* klass, void** iter);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern MethodInfo* il2cpp_class_get_method_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name, int argsCount);
+    public static extern Il2CppMethod* il2cpp_class_get_method_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name, int argsCount);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -297,47 +297,47 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern int il2cpp_field_get_flags(FieldInfo* field);
+    public static extern int il2cpp_field_get_flags(Il2CppField* field);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern byte* il2cpp_field_get_name(FieldInfo* field);
+    public static extern byte* il2cpp_field_get_name(Il2CppField* field);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppClass* il2cpp_field_get_parent(FieldInfo* field);
+    public static extern Il2CppClass* il2cpp_field_get_parent(Il2CppField* field);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern nuint il2cpp_field_get_offset(FieldInfo* field);
+    public static extern nuint il2cpp_field_get_offset(Il2CppField* field);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppType* il2cpp_field_get_type(FieldInfo* field);
+    public static extern Il2CppType* il2cpp_field_get_type(Il2CppField* field);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_field_get_value(Il2CppObject* obj, FieldInfo* field, void* value);
+    public static extern void il2cpp_field_get_value(Il2CppObject* obj, Il2CppField* field, void* value);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_field_get_value_object(FieldInfo* field, Il2CppObject* obj);
+    public static extern Il2CppObject* il2cpp_field_get_value_object(Il2CppField* field, Il2CppObject* obj);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern bool il2cpp_field_has_attribute(FieldInfo* field, Il2CppClass* attr_class);
+    public static extern bool il2cpp_field_has_attribute(Il2CppField* field, Il2CppClass* attr_class);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_field_set_value(Il2CppObject* obj, FieldInfo* field, void* value);
+    public static extern void il2cpp_field_set_value(Il2CppObject* obj, Il2CppField* field, void* value);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_field_static_get_value(FieldInfo* field, void* value);
+    public static extern void il2cpp_field_static_get_value(Il2CppField* field, void* value);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_field_static_set_value(FieldInfo* field, void* value);
+    public static extern void il2cpp_field_static_set_value(Il2CppField* field, void* value);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -369,79 +369,79 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppType* il2cpp_method_get_return_type(MethodInfo* method);
+    public static extern Il2CppType* il2cpp_method_get_return_type(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppClass* il2cpp_method_get_declaring_type(MethodInfo* method);
+    public static extern Il2CppClass* il2cpp_method_get_declaring_type(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern byte* il2cpp_method_get_name(MethodInfo* method);
+    public static extern byte* il2cpp_method_get_name(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppReflectionMethod* il2cpp_method_get_object(MethodInfo* method, Il2CppClass* refclass);
+    public static extern Il2CppReflectionMethod* il2cpp_method_get_object(Il2CppMethod* method, Il2CppClass* refclass);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern bool il2cpp_method_is_generic(MethodInfo* method);
+    public static extern bool il2cpp_method_is_generic(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern bool il2cpp_method_is_inflated(MethodInfo* method);
+    public static extern bool il2cpp_method_is_inflated(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern bool il2cpp_method_is_instance(MethodInfo* method);
+    public static extern bool il2cpp_method_is_instance(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern uint il2cpp_method_get_param_count(MethodInfo* method);
+    public static extern uint il2cpp_method_get_param_count(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppType* il2cpp_method_get_param(MethodInfo* method, uint index);
+    public static extern Il2CppType* il2cpp_method_get_param(Il2CppMethod* method, uint index);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppClass* il2cpp_method_get_class(MethodInfo* method);
+    public static extern Il2CppClass* il2cpp_method_get_class(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern bool il2cpp_method_has_attribute(MethodInfo* method, Il2CppClass* attr_class);
+    public static extern bool il2cpp_method_has_attribute(Il2CppMethod* method, Il2CppClass* attr_class);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern uint il2cpp_method_get_flags(MethodInfo* method, uint* iflags);
+    public static extern uint il2cpp_method_get_flags(Il2CppMethod* method, uint* iflags);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern uint il2cpp_method_get_token(MethodInfo* method);
+    public static extern uint il2cpp_method_get_token(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern byte* il2cpp_method_get_param_name(MethodInfo* method, uint index);
+    public static extern byte* il2cpp_method_get_param_name(Il2CppMethod* method, uint index);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern uint il2cpp_property_get_flags(PropertyInfo* prop);
+    public static extern uint il2cpp_property_get_flags(Il2CppProperty* prop);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern MethodInfo* il2cpp_property_get_get_method(PropertyInfo* prop);
+    public static extern Il2CppMethod* il2cpp_property_get_get_method(Il2CppProperty* prop);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern MethodInfo* il2cpp_property_get_set_method(PropertyInfo* prop);
+    public static extern Il2CppMethod* il2cpp_property_get_set_method(Il2CppProperty* prop);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern byte* il2cpp_property_get_name(PropertyInfo* prop);
+    public static extern byte* il2cpp_property_get_name(Il2CppProperty* prop);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppClass* il2cpp_property_get_parent(PropertyInfo* prop);
+    public static extern Il2CppClass* il2cpp_property_get_parent(Il2CppProperty* prop);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -453,7 +453,7 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern MethodInfo* il2cpp_object_get_virtual_method(Il2CppObject* obj, MethodInfo* method);
+    public static extern Il2CppMethod* il2cpp_object_get_virtual_method(Il2CppObject* obj, Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -497,11 +497,11 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke(MethodInfo* method, void* obj, void** @params, Il2CppException** exc);
+    public static extern Il2CppObject* il2cpp_runtime_invoke(Il2CppMethod* method, void* obj, void** @params, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args(MethodInfo* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppException** exc);
+    public static extern Il2CppObject* il2cpp_runtime_invoke_convert_args(Il2CppMethod* method, void* obj, Il2CppObject** @params, int paramCount, Il2CppException** exc);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
@@ -633,7 +633,7 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [DllImport("GameAssembly")]
-    public static extern MethodInfo* il2cpp_image_get_entry_point(Il2CppImage* image);
+    public static extern Il2CppMethod* il2cpp_image_get_entry_point(Il2CppImage* image);
 
     [ApplicableToUnityVersionsSince("5.3.2")]
     [DllImport("GameAssembly")]
@@ -652,11 +652,11 @@ internal static unsafe class Il2CppImports
     public static extern void il2cpp_gc_enable();
 
     [ApplicableToUnityVersionsSince("5.5.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_init_utf16")]
     public static extern void il2cpp_init_utf16_5_5_0([MarshalAs(UnmanagedType.LPWStr)] string domain_name);
 
     [ApplicableToUnityVersionsSince("2019.1.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_init_utf16")]
     public static extern int il2cpp_init_utf16_2019_1_0([MarshalAs(UnmanagedType.LPWStr)] string domain_name);
 
     [ApplicableToUnityVersionsSince("5.5.0")]
@@ -673,7 +673,7 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.6.0")]
     [DllImport("GameAssembly")]
-    public static extern void il2cpp_field_set_value_object(Il2CppObject* instance, FieldInfo* field, Il2CppObject* value);
+    public static extern void il2cpp_field_set_value_object(Il2CppObject* instance, Il2CppField* field, Il2CppObject* value);
 
     [ApplicableToUnityVersionsSince("5.6.0")]
     [DllImport("GameAssembly")]
@@ -705,7 +705,7 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("2018.2.0")]
     [DllImport("GameAssembly")]
-    public static extern MethodInfo* il2cpp_method_get_from_reflection(Il2CppReflectionMethod* method);
+    public static extern Il2CppMethod* il2cpp_method_get_from_reflection(Il2CppReflectionMethod* method);
 
     [ApplicableToUnityVersionsSince("2018.2.0")]
     [DllImport("GameAssembly")]
@@ -745,7 +745,7 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("2018.3.0")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_method(MethodInfo* method);
+    public static extern Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_method(Il2CppMethod* method);
 
     [ApplicableToUnityVersionsSince("2018.3.0")]
     [DllImport("GameAssembly")]
@@ -813,7 +813,7 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("2019.3.0")]
     [DllImport("GameAssembly")]
-    public static extern bool il2cpp_field_is_literal(FieldInfo* field);
+    public static extern bool il2cpp_field_is_literal(Il2CppField* field);
 
     [ApplicableToUnityVersionsSince("2019.3.0")]
     [DllImport("GameAssembly")]
@@ -868,11 +868,11 @@ internal static unsafe class Il2CppImports
     public static extern void il2cpp_set_default_thread_affinity(long affinity_mask);
 
     [ApplicableToUnityVersionsSince("2020.1.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_native_stack_trace")]
     public static extern void il2cpp_native_stack_trace_2020_1_0(Il2CppException* ex, nuint** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageUUID);
 
     [ApplicableToUnityVersionsSince("2021.2.0")]
-    [DllImport("GameAssembly")]
+    [DllImport("GameAssembly", EntryPoint = "il2cpp_native_stack_trace")]
     public static extern void il2cpp_native_stack_trace_2021_2_0(Il2CppException* ex, nuint** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageUUID, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageName);
 
     [ApplicableToUnityVersionsSince("2020.2.0")]
@@ -893,5 +893,5 @@ internal static unsafe class Il2CppImports
 
     [ApplicableToUnityVersionsSince("2022.2.0a13")]
     [DllImport("GameAssembly")]
-    public static extern Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_field(FieldInfo* field);
+    public static extern Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_field(Il2CppField* field);
 }

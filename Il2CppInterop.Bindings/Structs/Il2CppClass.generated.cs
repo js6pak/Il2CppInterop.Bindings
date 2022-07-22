@@ -9,11 +9,38 @@ namespace Il2CppInterop.Bindings.Structs;
 public unsafe partial struct Il2CppClass
 {
     public static int Size => UnityVersionHandler.Il2CppClass.Size;
-    public Il2CppClass* Pointer => (Il2CppClass*)Unsafe.AsPointer(ref this);
+
+    public Il2CppClass* Pointer 
+    {
+        get
+        {
+            fixed (Il2CppClass* pointer = &this) { return pointer; }
+        }
+    }
 
     public string? Name { get => UnityVersionHandler.Il2CppClass.GetName(Pointer); set => UnityVersionHandler.Il2CppClass.SetName(Pointer, value); }
     public ref byte* NamePointer => ref UnityVersionHandler.Il2CppClass.GetNamePointer(Pointer);
 
     public string? Namespace { get => UnityVersionHandler.Il2CppClass.GetNamespace(Pointer); set => UnityVersionHandler.Il2CppClass.SetNamespace(Pointer, value); }
     public ref byte* NamespacePointer => ref UnityVersionHandler.Il2CppClass.GetNamespacePointer(Pointer);
+
+    public bool IsGeneric { get => UnityVersionHandler.Il2CppClass.GetIsGeneric(Pointer); set => UnityVersionHandler.Il2CppClass.SetIsGeneric(Pointer, value); }
+
+    public bool IsSizeInitialized { get => UnityVersionHandler.Il2CppClass.GetIsSizeInitialized(Pointer); set => UnityVersionHandler.Il2CppClass.SetIsSizeInitialized(Pointer, value); }
+
+    public Il2CppType* ByVal => UnityVersionHandler.Il2CppClass.GetByVal(Pointer);
+
+    public Il2CppClass** NestedTypes { get => UnityVersionHandler.Il2CppClass.GetNestedTypes(Pointer); set => UnityVersionHandler.Il2CppClass.SetNestedTypes(Pointer, value); }
+
+    public ushort NestedTypeCount { get => UnityVersionHandler.Il2CppClass.GetNestedTypeCount(Pointer); set => UnityVersionHandler.Il2CppClass.SetNestedTypeCount(Pointer, value); }
+
+    public Il2CppMethod** Methods { get => UnityVersionHandler.Il2CppClass.GetMethods(Pointer); set => UnityVersionHandler.Il2CppClass.SetMethods(Pointer, value); }
+
+    public ushort MethodCount { get => UnityVersionHandler.Il2CppClass.GetMethodCount(Pointer); set => UnityVersionHandler.Il2CppClass.SetMethodCount(Pointer, value); }
+
+    public Il2CppField* Fields { get => UnityVersionHandler.Il2CppClass.GetFields(Pointer); set => UnityVersionHandler.Il2CppClass.SetFields(Pointer, value); }
+
+    public ushort FieldCount { get => UnityVersionHandler.Il2CppClass.GetFieldCount(Pointer); set => UnityVersionHandler.Il2CppClass.SetFieldCount(Pointer, value); }
+
+    public byte Rank { get => UnityVersionHandler.Il2CppClass.GetRank(Pointer); set => UnityVersionHandler.Il2CppClass.SetRank(Pointer, value); }
 }

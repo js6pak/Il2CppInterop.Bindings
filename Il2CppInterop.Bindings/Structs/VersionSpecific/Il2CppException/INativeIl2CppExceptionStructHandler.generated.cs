@@ -2,9 +2,7 @@
 
 #nullable enable
 
-namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppException;
-
-using Il2CppException = Il2CppInterop.Bindings.Structs.Il2CppException;
+namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppExceptionHandlers;
 
 public unsafe interface INativeIl2CppExceptionStructHandler : INativeStructHandler
 {

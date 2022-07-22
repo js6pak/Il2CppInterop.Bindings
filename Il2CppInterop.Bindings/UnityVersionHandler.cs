@@ -10,6 +10,7 @@ public static partial class UnityVersionHandler
     {
         Version = unityVersion;
         InitializeNativeStructHandlers(unityVersion);
+        Il2CppRuntime.Initialize();
     }
 }
 

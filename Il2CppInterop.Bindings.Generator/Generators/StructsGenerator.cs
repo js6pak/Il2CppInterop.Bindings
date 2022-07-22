@@ -9,12 +9,14 @@ public static class StructsGenerator
     public static string RenameStruct(string name)
     {
         if (name == "TypeInfo") return "Il2CppClass";
+        if (name is "EventInfo" or "MethodInfo" or "FieldInfo" or "PropertyInfo" or "ParameterInfo") return "Il2Cpp" + name[..^4];
         return name;
     }
 
     public static StructGenerator[] Generators { get; } =
     {
         new Il2CppClassGenerator(),
+        new Il2CppMethodGenerator(),
         new Il2CppExceptionGenerator(),
     };
 

@@ -11,11 +11,7 @@ public abstract class StructGenerator
     public string HandlerName => $"Native{StructName}StructHandler";
     public string HandlerInterfaceName => "I" + HandlerName;
 
-    public CSharpNamespace Namespace => new(BaseNamespace + $".VersionSpecific.{StructName}")
-    {
-        // Avoid namespace - struct name clash
-        Usings = { new CSharpUsing(StructName, BaseNamespace + "." + StructName) },
-    };
+    public CSharpNamespace Namespace => new(BaseNamespace + $".VersionSpecific.{StructName}Handlers");
 
     public Dictionary<UnityVersion, Il2CppVersion.Struct> Versions { get; } = new();
 
@@ -109,7 +105,7 @@ public abstract class StructGenerator
         foreach (var field in Fields)
         {
             var structField = @struct.Fields.Single(f => field.NativeFieldNames.Contains(f.Name));
-            @class.Members.AddRange(field.GetMethods(this, new FieldContext(structName, CodeWriter.SanitizeIdentifier(structField.Name))));
+            @class.Members.AddRange(field.GetMethods(this, new FieldContext(structName, unityVersion, CodeWriter.SanitizeIdentifier(structField.Name))));
         }
 
         return new CSharpFile(Namespace)
@@ -173,7 +169,8 @@ public abstract class StructGenerator
                 {
                     Getter = new CSharpProperty.Accessor
                     {
-                        Body = writer => writer.Write($"({StructName + "*"})Unsafe.AsPointer(ref this);"),
+                        IsMultiline = true,
+                        Body = writer => writer.WriteLine($"fixed ({StructName}* pointer = &this) {{ return pointer; }}"),
                     },
                 },
                 new CSharpBlankLine(),
@@ -218,7 +215,7 @@ public abstract class StructGenerator
         }
     }
 
-    public record FieldContext(string StructName, string FieldName)
+    public record FieldContext(string StructName, UnityVersion UnityVersion, string FieldName)
     {
         public string StoreCast { get; } = $"var _ = ({StructName}*)o;";
     }
@@ -303,9 +300,14 @@ public abstract class StructGenerator
                     : writer =>
                     {
                         writer.WriteLine(context.StoreCast);
-                        writer.WriteLine($"return &_->{context.FieldName};");
+                        WriteGetterBody(writer, context);
                     },
             };
+        }
+
+        protected override void WriteGetterBody(CodeWriter writer, FieldContext context)
+        {
+            writer.WriteLine($"return &_->{context.FieldName};");
         }
     }
 
@@ -349,6 +351,21 @@ public abstract class StructGenerator
         protected override void WriteSetterBody(CodeWriter writer, FieldContext context)
         {
             writer.WriteLine($"_->{context.FieldName} = value == null ? default : (byte*)Marshal.StringToHGlobalAnsi(value);");
+        }
+    }
+
+    public record BoolField(string Name, string[] NativeFieldNames) : Field(Name, NativeFieldNames)
+    {
+        public override string Type => "bool";
+
+        protected override void WriteGetterBody(CodeWriter writer, FieldContext context)
+        {
+            writer.WriteLine($"return _->{context.FieldName} != 0 ? true : false;");
+        }
+
+        protected override void WriteSetterBody(CodeWriter writer, FieldContext context)
+        {
+            writer.WriteLine($"_->{context.FieldName} = (byte)(value ? 1 : 0);");
         }
     }
 }
