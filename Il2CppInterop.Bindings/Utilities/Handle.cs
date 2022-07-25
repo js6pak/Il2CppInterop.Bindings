@@ -17,4 +17,11 @@ public unsafe struct Handle<T> where T : unmanaged
 
     public static explicit operator IntPtr(Handle<T> value) => (IntPtr)value.Value;
     public static explicit operator UIntPtr(Handle<T> value) => (UIntPtr)value.Value;
+
+    // Shorthand for unwrapping the handle in a foreach, unfortunately C# doesn't allow single value deconstructors 
+    public void Deconstruct(out T* value, out object? _)
+    {
+        value = Value;
+        _ = null;
+    }
 }

@@ -54,15 +54,10 @@ public static unsafe class Il2CppRuntime
     {
         var domain = Il2CppDomain.Current;
 
-        var assemblies = Il2CppDomain.GetAssemblies(domain, out var size);
-        for (nuint i = 0; i < size; i++)
+        foreach (var (assembly, _) in domain->GetAssemblies())
         {
-            var assembly = assemblies[i];
-            var image = Il2CppAssembly.GetImage(assembly);
-
-            var name = Il2CppImage.GetName(image);
-
-            _imageMap[name] = image;
+            var image = assembly->Image;
+            _imageMap[image->Name] = image;
         }
     }
 
@@ -83,14 +78,14 @@ public static unsafe class Il2CppRuntime
 
     public static Il2CppClass* GetNestedClassFromName(Il2CppClass* declaringType, string nestedTypeName)
     {
-        if (Il2CppClass.IsInflated(declaringType))
+        if (declaringType->IsInflated)
         {
             throw new NotImplementedException();
         }
 
-        foreach (var nestedType in Il2CppClass.GetNestedTypes(declaringType))
+        foreach (var (nestedType, _) in declaringType->GetNestedTypes())
         {
-            if (nestedType.Value->Name == nestedTypeName)
+            if (nestedType->Name == nestedTypeName)
             {
                 return nestedType;
             }

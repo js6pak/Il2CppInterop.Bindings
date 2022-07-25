@@ -2,21 +2,14 @@
 
 #nullable enable
 
-using System.Runtime.CompilerServices;
+using Il2CppInterop.Bindings.Utilities;
 
 namespace Il2CppInterop.Bindings.Structs;
 
+[NativeStruct]
 public unsafe partial struct Il2CppClass
 {
     public static int Size => UnityVersionHandler.Il2CppClass.Size;
-
-    public Il2CppClass* Pointer 
-    {
-        get
-        {
-            fixed (Il2CppClass* pointer = &this) { return pointer; }
-        }
-    }
 
     public string? Name { get => UnityVersionHandler.Il2CppClass.GetName(Pointer); set => UnityVersionHandler.Il2CppClass.SetName(Pointer, value); }
     public ref byte* NamePointer => ref UnityVersionHandler.Il2CppClass.GetNamePointer(Pointer);

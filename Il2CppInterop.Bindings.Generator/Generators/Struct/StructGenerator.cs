@@ -155,6 +155,10 @@ public abstract class StructGenerator
         {
             IsUnsafe = true,
             IsPartial = true,
+            Attributes =
+            {
+                new CSharpAttribute("NativeStruct"),
+            },
             Members =
             {
                 new CSharpProperty("int", "Size")
@@ -163,14 +167,6 @@ public abstract class StructGenerator
                     Getter = new CSharpProperty.Accessor
                     {
                         Body = writer => writer.Write($"UnityVersionHandler.{StructName}.Size;"),
-                    },
-                },
-                new CSharpProperty(StructName + "*", "Pointer")
-                {
-                    Getter = new CSharpProperty.Accessor
-                    {
-                        IsMultiline = true,
-                        Body = writer => writer.WriteLine($"fixed ({StructName}* pointer = &this) {{ return pointer; }}"),
                     },
                 },
                 new CSharpBlankLine(),
@@ -193,7 +189,7 @@ public abstract class StructGenerator
                 writer.WriteLine("#nullable enable");
                 writer.WriteLine();
             },
-            Usings = { "System.Runtime.CompilerServices" },
+            Usings = { "Il2CppInterop.Bindings.Utilities", },
             Members =
             {
                 @struct,

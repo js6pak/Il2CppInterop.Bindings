@@ -18,10 +18,13 @@
         <RepositoryUrl>https://github.com/BepInEx/Il2CppInterop.Bindings</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <!--        <DefineConstants>DISABLE_SHORTCUTS</DefineConstants>-->
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="AssetRipper.VersionUtilities" Version="1.2.1" />
+
+        <ProjectReference Include="..\Il2CppInterop.Bindings.SourceGenerator\Il2CppInterop.Bindings.SourceGenerator.csproj" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
     </ItemGroup>
 
 </Project>
