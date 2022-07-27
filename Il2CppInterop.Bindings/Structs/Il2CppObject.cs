@@ -20,6 +20,11 @@ public unsafe partial struct Il2CppObject
         klass;
 #endif
 
+    public Il2CppMethod* GetVirtualMethod(Il2CppMethod* method)
+    {
+        return Il2CppImports.il2cpp_object_get_virtual_method(Pointer, method);
+    }
+
     public static Il2CppObject* New(Il2CppClass* klass)
     {
         return Il2CppImports.il2cpp_object_new(klass);

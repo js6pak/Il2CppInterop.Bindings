@@ -9,8 +9,10 @@ internal class Il2CppClassGenerator : StructGenerator
 
     public override Field[] Fields { get; } =
     {
+        new NormalField("Il2CppImage*", "Image", new[] { "image" }),
         new StringField("Name", new[] { "name" }),
         new StringField("Namespace", new[] { "namespaze" }),
+        new NormalField("Il2CppClass*", "DeclaringType", new[] { "declaringType" }),
         new BoolField("IsGeneric", new[] { "is_generic" }),
         new BoolField("IsSizeInitialized", new[] { "size_inited" }),
 

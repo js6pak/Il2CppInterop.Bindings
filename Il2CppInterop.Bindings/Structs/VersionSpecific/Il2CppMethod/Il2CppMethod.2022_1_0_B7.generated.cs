@@ -76,6 +76,30 @@ internal unsafe class NativeIl2CppMethodStructHandler_2022_1_0_B7 : INativeIl2Cp
         }
     }
 
+    public void* GetMethodPointer(Il2CppMethod* o)
+    {
+        var _ = (Il2CppMethod_2022_1_0_B7*)o;
+        return _->methodPointer;
+    }
+
+    public void SetMethodPointer(Il2CppMethod* o, void* value)
+    {
+        var _ = (Il2CppMethod_2022_1_0_B7*)o;
+        _->methodPointer = value;
+    }
+
+    public Il2CppClass* GetClass(Il2CppMethod* o)
+    {
+        var _ = (Il2CppMethod_2022_1_0_B7*)o;
+        return _->klass;
+    }
+
+    public void SetClass(Il2CppMethod* o, Il2CppClass* value)
+    {
+        var _ = (Il2CppMethod_2022_1_0_B7*)o;
+        _->klass = value;
+    }
+
     public string? GetName(Il2CppMethod* o)
     {
         var _ = (Il2CppMethod_2022_1_0_B7*)o;

@@ -11,6 +11,10 @@ public unsafe partial struct Il2CppMethod
 {
     public static int Size => UnityVersionHandler.Il2CppMethod.Size;
 
+    public void* MethodPointer { get => UnityVersionHandler.Il2CppMethod.GetMethodPointer(Pointer); set => UnityVersionHandler.Il2CppMethod.SetMethodPointer(Pointer, value); }
+
+    public Il2CppClass* Class { get => UnityVersionHandler.Il2CppMethod.GetClass(Pointer); set => UnityVersionHandler.Il2CppMethod.SetClass(Pointer, value); }
+
     public string? Name { get => UnityVersionHandler.Il2CppMethod.GetName(Pointer); set => UnityVersionHandler.Il2CppMethod.SetName(Pointer, value); }
     public ref byte* NamePointer => ref UnityVersionHandler.Il2CppMethod.GetNamePointer(Pointer);
 

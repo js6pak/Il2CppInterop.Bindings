@@ -3,16 +3,18 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable ConvertToAutoProperty
 
+using System.Runtime.InteropServices;
 using Il2CppInterop.Bindings.Utilities;
 
 namespace Il2CppInterop.Bindings.Structs;
 
 [NativeStruct]
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
 public unsafe partial struct Il2CppString
 {
     private Il2CppObject @object;
     private int length;
-    private char* chars;
+    private char* chars => (char*)(Pointer + 1);
 
     public int Length => length;
 
@@ -20,7 +22,7 @@ public unsafe partial struct Il2CppString
 
     public override string ToString()
     {
-        return new string(chars, 0, length);
+        return new string(chars, 0, Length);
     }
 
     public static Il2CppString* From(string value)

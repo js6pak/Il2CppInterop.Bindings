@@ -191,6 +191,18 @@ internal unsafe class NativeIl2CppClassStructHandler_5_4_4 : INativeIl2CppClassS
         }
     }
 
+    public Il2CppImage* GetImage(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_5_4_4*)o;
+        return _->image;
+    }
+
+    public void SetImage(Il2CppClass* o, Il2CppImage* value)
+    {
+        var _ = (Il2CppClass_5_4_4*)o;
+        _->image = value;
+    }
+
     public string? GetName(Il2CppClass* o)
     {
         var _ = (Il2CppClass_5_4_4*)o;
@@ -225,6 +237,18 @@ internal unsafe class NativeIl2CppClassStructHandler_5_4_4 : INativeIl2CppClassS
     {
         var _ = (Il2CppClass_5_4_4*)o;
         return ref _->namespaze;
+    }
+
+    public Il2CppClass* GetDeclaringType(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_5_4_4*)o;
+        return _->declaringType;
+    }
+
+    public void SetDeclaringType(Il2CppClass* o, Il2CppClass* value)
+    {
+        var _ = (Il2CppClass_5_4_4*)o;
+        _->declaringType = value;
     }
 
     public bool GetIsGeneric(Il2CppClass* o)

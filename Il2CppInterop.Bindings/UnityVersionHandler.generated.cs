@@ -4,6 +4,7 @@ using AssetRipper.VersionUtilities;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppClassHandlers;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppMethodHandlers;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppExceptionHandlers;
+using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppArrayHandlers;
 
 namespace Il2CppInterop.Bindings;
 
@@ -12,6 +13,7 @@ public static partial class UnityVersionHandler
     public static INativeIl2CppClassStructHandler Il2CppClass { get; private set; }
     public static INativeIl2CppMethodStructHandler Il2CppMethod { get; private set; }
     public static INativeIl2CppExceptionStructHandler Il2CppException { get; private set; }
+    public static INativeIl2CppArrayStructHandler Il2CppArray { get; private set; }
 
     private static void InitializeNativeStructHandlers(UnityVersion unityVersion)
     {
@@ -47,5 +49,9 @@ public static partial class UnityVersionHandler
         else if (unityVersion >= new UnityVersion(5, 6, 0)) Il2CppException = new NativeIl2CppExceptionStructHandler_5_6_0();
         else if (unityVersion >= new UnityVersion(5, 3, 5)) Il2CppException = new NativeIl2CppExceptionStructHandler_5_3_5();
         else if (unityVersion >= new UnityVersion(5, 2, 2)) Il2CppException = new NativeIl2CppExceptionStructHandler_5_2_2();
+
+        if (unityVersion >= new UnityVersion(2017, 2, 0)) Il2CppArray = new NativeIl2CppArrayStructHandler_2017_2_0();
+        else if (unityVersion >= new UnityVersion(5, 3, 3)) Il2CppArray = new NativeIl2CppArrayStructHandler_5_3_3();
+        else if (unityVersion >= new UnityVersion(5, 2, 2)) Il2CppArray = new NativeIl2CppArrayStructHandler_5_2_2();
     }
 }

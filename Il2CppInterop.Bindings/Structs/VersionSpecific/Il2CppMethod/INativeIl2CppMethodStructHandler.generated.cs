@@ -6,6 +6,14 @@ namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppMethodHandlers;
 
 public unsafe interface INativeIl2CppMethodStructHandler : INativeStructHandler
 {
+    public void* GetMethodPointer(Il2CppMethod* o);
+
+    public void SetMethodPointer(Il2CppMethod* o, void* value);
+
+    public Il2CppClass* GetClass(Il2CppMethod* o);
+
+    public void SetClass(Il2CppMethod* o, Il2CppClass* value);
+
     public string? GetName(Il2CppMethod* o);
 
     public void SetName(Il2CppMethod* o, string? value);

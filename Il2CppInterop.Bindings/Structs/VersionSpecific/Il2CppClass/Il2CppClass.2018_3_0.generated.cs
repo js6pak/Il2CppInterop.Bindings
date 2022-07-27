@@ -227,6 +227,18 @@ internal unsafe class NativeIl2CppClassStructHandler_2018_3_0 : INativeIl2CppCla
         public VirtualInvokeData* vtable => (VirtualInvokeData*)((Il2CppClass_2018_3_0*)Unsafe.AsPointer(ref this) + sizeof(Il2CppClass_2018_3_0));
     }
 
+    public Il2CppImage* GetImage(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_0*)o;
+        return _->image;
+    }
+
+    public void SetImage(Il2CppClass* o, Il2CppImage* value)
+    {
+        var _ = (Il2CppClass_2018_3_0*)o;
+        _->image = value;
+    }
+
     public string? GetName(Il2CppClass* o)
     {
         var _ = (Il2CppClass_2018_3_0*)o;
@@ -261,6 +273,18 @@ internal unsafe class NativeIl2CppClassStructHandler_2018_3_0 : INativeIl2CppCla
     {
         var _ = (Il2CppClass_2018_3_0*)o;
         return ref _->namespaze;
+    }
+
+    public Il2CppClass* GetDeclaringType(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2018_3_0*)o;
+        return _->declaringType;
+    }
+
+    public void SetDeclaringType(Il2CppClass* o, Il2CppClass* value)
+    {
+        var _ = (Il2CppClass_2018_3_0*)o;
+        _->declaringType = value;
     }
 
     public bool GetIsGeneric(Il2CppClass* o)

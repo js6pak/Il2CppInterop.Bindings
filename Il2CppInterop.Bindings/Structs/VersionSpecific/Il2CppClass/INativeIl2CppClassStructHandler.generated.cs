@@ -6,6 +6,10 @@ namespace Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppClassHandlers;
 
 public unsafe interface INativeIl2CppClassStructHandler : INativeStructHandler
 {
+    public Il2CppImage* GetImage(Il2CppClass* o);
+
+    public void SetImage(Il2CppClass* o, Il2CppImage* value);
+
     public string? GetName(Il2CppClass* o);
 
     public void SetName(Il2CppClass* o, string? value);
@@ -17,6 +21,10 @@ public unsafe interface INativeIl2CppClassStructHandler : INativeStructHandler
     public void SetNamespace(Il2CppClass* o, string? value);
 
     public ref byte* GetNamespacePointer(Il2CppClass* o);
+
+    public Il2CppClass* GetDeclaringType(Il2CppClass* o);
+
+    public void SetDeclaringType(Il2CppClass* o, Il2CppClass* value);
 
     public bool GetIsGeneric(Il2CppClass* o);
 

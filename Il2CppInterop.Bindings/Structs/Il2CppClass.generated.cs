@@ -11,11 +11,15 @@ public unsafe partial struct Il2CppClass
 {
     public static int Size => UnityVersionHandler.Il2CppClass.Size;
 
+    public Il2CppImage* Image { get => UnityVersionHandler.Il2CppClass.GetImage(Pointer); set => UnityVersionHandler.Il2CppClass.SetImage(Pointer, value); }
+
     public string? Name { get => UnityVersionHandler.Il2CppClass.GetName(Pointer); set => UnityVersionHandler.Il2CppClass.SetName(Pointer, value); }
     public ref byte* NamePointer => ref UnityVersionHandler.Il2CppClass.GetNamePointer(Pointer);
 
     public string? Namespace { get => UnityVersionHandler.Il2CppClass.GetNamespace(Pointer); set => UnityVersionHandler.Il2CppClass.SetNamespace(Pointer, value); }
     public ref byte* NamespacePointer => ref UnityVersionHandler.Il2CppClass.GetNamespacePointer(Pointer);
+
+    public Il2CppClass* DeclaringType { get => UnityVersionHandler.Il2CppClass.GetDeclaringType(Pointer); set => UnityVersionHandler.Il2CppClass.SetDeclaringType(Pointer, value); }
 
     public bool IsGeneric { get => UnityVersionHandler.Il2CppClass.GetIsGeneric(Pointer); set => UnityVersionHandler.Il2CppClass.SetIsGeneric(Pointer, value); }
 
