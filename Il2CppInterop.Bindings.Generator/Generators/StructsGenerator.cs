@@ -18,6 +18,7 @@ public static class StructsGenerator
         new Il2CppClassGenerator(),
         new Il2CppMethodGenerator(),
         new Il2CppExceptionGenerator(),
+        new Il2CppArrayGenerator(),
     };
 
     public static StructGenerator GetGeneratorByName(string className)

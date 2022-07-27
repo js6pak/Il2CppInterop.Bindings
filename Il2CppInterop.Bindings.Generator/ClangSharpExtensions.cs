@@ -103,6 +103,7 @@ public static class ClangSharpExtensions
 
         switch (name)
         {
+            case "Il2CppArrayBounds":
             case "Il2CppGenericClass":
             case "Il2CppTypeDefinition":
             case "Il2CppInteropData":

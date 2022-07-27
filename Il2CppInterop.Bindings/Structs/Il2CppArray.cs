@@ -4,15 +4,11 @@
 // ReSharper disable ConvertToAutoProperty
 
 using AssetRipper.VersionUtilities;
-using Il2CppInterop.Bindings.Utilities;
 
 namespace Il2CppInterop.Bindings.Structs;
 
-[NativeStruct]
 public unsafe partial struct Il2CppArray
 {
-    public uint Length => Il2CppImports.il2cpp_array_length(Pointer);
-
     public static Il2CppArray* New(Il2CppClass* elementClass, int length)
     {
         if (UnityVersionHandler.Version >= new UnityVersion(2017, 2, 0, UnityVersionType.Final))
@@ -31,5 +27,10 @@ public unsafe partial struct Il2CppArray
         }
 
         return Il2CppImports.il2cpp_array_new_specific_5_2_2(arrayClass, length);
+    }
+
+    public static Il2CppClass* GetClass(Il2CppClass* elementClass, uint rank)
+    {
+        return Il2CppImports.il2cpp_array_class_get(elementClass, rank);
     }
 }
