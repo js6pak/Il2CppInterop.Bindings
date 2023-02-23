@@ -12,7 +12,7 @@ namespace Il2CppInterop.Bindings.Generator;
 
 public class CppParser : IDisposable
 {
-    static CppParser()
+    public static void Initialize()
     {
         // Workaround for https://github.com/MochiLibraries/ClangSharp.Pathogen/issues/7
         if (OperatingSystem.IsLinux())

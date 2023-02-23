@@ -8,13 +8,13 @@ using ClangSharp.Pathogen;
 using Il2CppInterop.Bindings.Generator;
 using Il2CppInterop.Bindings.Generator.Generators;
 
-if (args.Length != 1)
+if (args.Length > 1 || args.Contains("--help"))
 {
-    Console.Error.WriteLine("./Il2CppInterop.Bindings.Generator <output path>");
+    Console.Error.WriteLine("./Il2CppInterop.Bindings.Generator [--update-versions]");
     return -1;
 }
 
-var outputPath = args[0];
+var outputPath = Path.Combine("..", "Il2CppInterop.Bindings");
 
 if (!Directory.Exists(outputPath))
 {
@@ -22,7 +22,9 @@ if (!Directory.Exists(outputPath))
     return -1;
 }
 
-var sourcesPath = await SourceManager.EnsureExists();
+CppParser.Initialize();
+
+var sources = await SourceManager.FetchAsync(args.Contains("--update-versions"));
 
 IDictionary<UnityVersion, Il2CppVersion> versions = new ConcurrentDictionary<UnityVersion, Il2CppVersion>();
 
@@ -30,20 +32,9 @@ var metadataVersionRegex = new Regex(@"\(s_GlobalMetadataHeader->version == (?<v
 
 var stopwatch = Stopwatch.StartNew();
 
-await Parallel.ForEachAsync(Directory.GetDirectories(sourcesPath), new ParallelOptions { MaxDegreeOfParallelism = Math.Min(Environment.ProcessorCount, 4) }, async (sourcePath, token) =>
+await Parallel.ForEachAsync(sources, new ParallelOptions { MaxDegreeOfParallelism = Math.Min(Environment.ProcessorCount, 4) }, async (source, token) =>
 {
-    var unityVersion = UnityVersion.Parse(Path.GetFileName(sourcePath));
-
-    if (unityVersion.Type != UnityVersionType.Final)
-    {
-        return;
-    }
-
-    // Versions before 5.2.1 didn't have source files which we need for extracting metadata version
-    if (unityVersion.IsLessEqual(5, 2, 1))
-    {
-        return;
-    }
+    var (unityVersion, sourcePath) = source;
 
     Console.WriteLine("Parsing " + unityVersion.ToFriendlyString());
 

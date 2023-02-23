@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,8 +16,7 @@
 
         <PackageReference Include="ClangSharp.Pathogen" Version="0.0.4" />
         <PackageReference Include="ClangSharp.Pathogen.ClangResources" Version="0.0.4" />
-        <PackageReference Include="ClangSharp.Pathogen.Native.win-x64" Version="0.0.4" />
-        <PackageReference Include="ClangSharp.Pathogen.Native.linux-x64" Version="0.0.4" />
+        <PackageReference Include="ClangSharp.Pathogen.Native.$(NETCoreSdkRuntimeIdentifier)" Version="0.0.4" />
     </ItemGroup>
 
 </Project>
