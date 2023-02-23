@@ -55,7 +55,7 @@ public abstract class StructGenerator
                 if (offset == 0)
                 {
                     csharpStruct.Add(new CSharpBlankLine());
-                    csharpStruct.Add(new CSharpField(Visibility.Private, type, bitFieldName));
+                    csharpStruct.Add(new CSharpField(type, bitFieldName));
                 }
 
                 var bitMask = (1 << (int)bitField.Width) - 1;
@@ -69,7 +69,7 @@ public abstract class StructGenerator
                     },
                     Setter = new CSharpProperty.Accessor
                     {
-                        IsMultiline = true,
+                        BodyType = BodyType.Block,
                         Body = writer =>
                         {
                             writer.WriteLine($"var shiftedValue = (value & {bitMaskText}) << {offset};");
@@ -81,7 +81,7 @@ public abstract class StructGenerator
             }
             else
             {
-                csharpStruct.Add(new CSharpField(type, string.IsNullOrEmpty(field.Name) ? $"anon{anonCount++}" : field.Name));
+                csharpStruct.Add(new CSharpField(Visibility.Public, type, string.IsNullOrEmpty(field.Name) ? $"anon{anonCount++}" : field.Name));
             }
         }
 
@@ -112,7 +112,6 @@ public abstract class StructGenerator
         {
             Header = writer =>
             {
-                writer.WriteLine("#nullable enable");
                 // Disable "is never assigned to" warning
                 writer.WriteLine("#pragma warning disable CS0649");
                 writer.WriteLine();
@@ -140,11 +139,6 @@ public abstract class StructGenerator
 
         return new CSharpFile(Namespace)
         {
-            Header = writer =>
-            {
-                writer.WriteLine("#nullable enable");
-                writer.WriteLine();
-            },
             Members = { @interface },
         };
     }
@@ -184,11 +178,6 @@ public abstract class StructGenerator
 
         return new CSharpFile(BaseNamespace)
         {
-            Header = writer =>
-            {
-                writer.WriteLine("#nullable enable");
-                writer.WriteLine();
-            },
             Usings = { "Il2CppInterop.Bindings.Utilities", },
             Members =
             {

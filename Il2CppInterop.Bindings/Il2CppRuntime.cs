@@ -1,5 +1,4 @@
 using System.Runtime.InteropServices;
-using AssetRipper.VersionUtilities;
 using Il2CppInterop.Bindings.Structs;
 using Il2CppInterop.Bindings.Utilities;
 
@@ -9,7 +8,7 @@ public static unsafe class Il2CppRuntime
 {
     public static int Init(string domainName)
     {
-        if (UnityVersionHandler.Version >= new UnityVersion(2019, 1, 0, UnityVersionType.Final))
+        if (UnityVersionHandler.Version.IsGreaterEqual(2019, 1, 0))
         {
             return Il2CppImports.il2cpp_init_2019_1_0(domainName);
         }
@@ -26,7 +25,7 @@ public static unsafe class Il2CppRuntime
 
     public static void SetCommandlineArguments(string[] arguments)
     {
-        if (UnityVersionHandler.Version >= new UnityVersion(5, 5, 0, UnityVersionType.Final))
+        if (UnityVersionHandler.Version.IsGreaterEqual(5, 5, 0))
         {
             Il2CppImports.il2cpp_set_commandline_arguments_utf16(arguments.Length, arguments, null);
         }

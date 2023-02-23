@@ -90,7 +90,7 @@ public static class StructsGenerator
                         if (firstVersion) firstVersion = false;
                         else writer.Write("else ");
 
-                        writer.WriteLine($"if (unityVersion >= new UnityVersion({unityVersion.ToConstructorParameters()})) {structGenerator.StructName} = new {structGenerator.HandlerName}_{unityVersion.ToSanitizedString()}();");
+                        writer.WriteLine($"if (unityVersion.IsGreaterEqual({unityVersion.ToConstructorParameters()})) {structGenerator.StructName} = new {structGenerator.HandlerName}_{unityVersion.ToSanitizedString()}();");
                     }
                 }
             },

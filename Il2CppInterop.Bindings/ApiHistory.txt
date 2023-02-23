@@ -283,6 +283,7 @@
 - il2cpp_unity_liveness_calculation_begin
 - il2cpp_unity_liveness_calculation_end
 
-2022.2.0a13
+2022.2.0
++ il2cpp_type_get_reflection_name
 + il2cpp_custom_attrs_from_field
 

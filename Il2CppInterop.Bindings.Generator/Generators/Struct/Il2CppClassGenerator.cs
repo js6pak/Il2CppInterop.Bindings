@@ -34,7 +34,7 @@ internal class Il2CppClassGenerator : StructGenerator
     {
         protected override void WriteGetterBody(CodeWriter writer, FieldContext context)
         {
-            if (context.UnityVersion <= new UnityVersion(5, 6, 0, UnityVersionType.Final))
+            if (context.UnityVersion.IsLessEqual(5, 6, 0))
             {
                 writer.WriteLine($"return _->{context.FieldName};");
             }

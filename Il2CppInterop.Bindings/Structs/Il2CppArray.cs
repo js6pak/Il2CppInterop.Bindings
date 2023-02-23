@@ -3,15 +3,13 @@
 // ReSharper disable InconsistentNaming
 // ReSharper disable ConvertToAutoProperty
 
-using AssetRipper.VersionUtilities;
-
 namespace Il2CppInterop.Bindings.Structs;
 
 public unsafe partial struct Il2CppArray
 {
     public static Il2CppArray* New(Il2CppClass* elementClass, int length)
     {
-        if (UnityVersionHandler.Version >= new UnityVersion(2017, 2, 0, UnityVersionType.Final))
+        if (UnityVersionHandler.Version.IsGreaterEqual(2017, 2, 0))
         {
             return Il2CppImports.il2cpp_array_new_2017_2_0(elementClass, (nuint)length);
         }
@@ -21,7 +19,7 @@ public unsafe partial struct Il2CppArray
 
     public static Il2CppArray* NewSpecific(Il2CppClass* arrayClass, int length)
     {
-        if (UnityVersionHandler.Version >= new UnityVersion(2017, 2, 0, UnityVersionType.Final))
+        if (UnityVersionHandler.Version.IsGreaterEqual(2017, 2, 0))
         {
             return Il2CppImports.il2cpp_array_new_specific_2017_2_0(arrayClass, (nuint)length);
         }

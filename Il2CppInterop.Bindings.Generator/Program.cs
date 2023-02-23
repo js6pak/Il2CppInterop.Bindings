@@ -34,15 +34,20 @@ await Parallel.ForEachAsync(Directory.GetDirectories(sourcesPath), new ParallelO
 {
     var unityVersion = UnityVersion.Parse(Path.GetFileName(sourcePath));
 
+    if (unityVersion.Type != UnityVersionType.Final)
+    {
+        return;
+    }
+
     // Versions before 5.2.1 didn't have source files which we need for extracting metadata version
-    if (unityVersion <= new UnityVersion(5, 2, 1, UnityVersionType.Final))
+    if (unityVersion.IsLessEqual(5, 2, 1))
     {
         return;
     }
 
     Console.WriteLine("Parsing " + unityVersion.ToFriendlyString());
 
-    var path = Path.Combine(sourcePath, "vm", unityVersion >= new UnityVersion(2020, 2, 0, UnityVersionType.Final) ? "GlobalMetadata.cpp" : "MetadataCache.cpp");
+    var path = Path.Combine(sourcePath, "vm", unityVersion.IsGreaterEqual(2020, 2, 0) ? "GlobalMetadata.cpp" : "MetadataCache.cpp");
     var match = metadataVersionRegex.Match(await File.ReadAllTextAsync(path, token));
     var metadataVersion = int.Parse(match.Groups["version"].Value);
 
@@ -52,9 +57,9 @@ await Parallel.ForEachAsync(Directory.GetDirectories(sourcesPath), new ParallelO
     using (var cppParser = new CppParser(sourcePath, new[]
            {
                "il2cpp-api.h",
-               unityVersion >= new UnityVersion(2020, 2, 0, UnityVersionType.Final) ? Path.Join("vm", "GlobalMetadataFileInternals.h") : "il2cpp-metadata.h",
-               unityVersion >= new UnityVersion(2017, 3, 0, UnityVersionType.Final) ? "il2cpp-class-internals.h" : "class-internals.h",
-               unityVersion >= new UnityVersion(2017, 3, 0, UnityVersionType.Final) ? "il2cpp-object-internals.h" : "object-internals.h",
+               unityVersion.IsGreaterEqual(2020, 2, 0) ? Path.Join("vm", "GlobalMetadataFileInternals.h") : "il2cpp-metadata.h",
+               unityVersion.IsGreaterEqual(2017, 3, 0) ? "il2cpp-class-internals.h" : "class-internals.h",
+               unityVersion.IsGreaterEqual(2017, 3, 0) ? "il2cpp-object-internals.h" : "object-internals.h",
            })
            {
                CommandLineArguments =

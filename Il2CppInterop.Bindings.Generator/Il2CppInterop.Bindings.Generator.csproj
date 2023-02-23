@@ -9,17 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AssetRipper.VersionUtilities" Version="1.2.1" />
+        <PackageReference Include="AssetRipper.VersionUtilities" Version="1.3.1" />
 
-        <PackageReference Include="CSharpPoet" Version="0.1.0" />
+        <PackageReference Include="CSharpPoet" Version="0.3.0" />
 
-        <PackageReference Include="ClangSharp" Version="14.0.0-beta2" />
         <PackageReference Include="ClangSharp.Pathogen" Version="0.0.4" />
         <PackageReference Include="ClangSharp.Pathogen.ClangResources" Version="0.0.4" />
         <PackageReference Include="ClangSharp.Pathogen.Native.win-x64" Version="0.0.4" />
         <PackageReference Include="ClangSharp.Pathogen.Native.linux-x64" Version="0.0.4" />
-        <PackageReference Include="libClang" Version="14.0.0" PrivateAssets="all" />
-        <PackageReference Include="libClangSharp" Version="14.0.0-beta1" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>
