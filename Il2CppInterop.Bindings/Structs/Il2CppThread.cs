@@ -14,7 +14,7 @@ public unsafe partial struct Il2CppThread
 
     public void Detach() => Il2CppImports.il2cpp_thread_detach(Pointer);
 
-    public static NativeArray<Handle<Il2CppThread>> GetAllAttachedThreads()
+    public static NativeArray<Pointer<Il2CppThread>> GetAllAttachedThreads()
     {
         nuint size = 0;
         var array = Il2CppImports.il2cpp_thread_get_all_attached_threads(&size);

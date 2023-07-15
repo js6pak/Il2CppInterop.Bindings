@@ -12,7 +12,7 @@ public unsafe partial struct Il2CppDomain
 {
     public static Il2CppDomain* Current => Il2CppImports.il2cpp_domain_get();
 
-    public NativeArray<Handle<Il2CppAssembly>> GetAssemblies()
+    public NativeArray<Pointer<Il2CppAssembly>> GetAssemblies()
     {
         nuint size = 0;
         var array = Il2CppImports.il2cpp_domain_get_assemblies(Pointer, &size);

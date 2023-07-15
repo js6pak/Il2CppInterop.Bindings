@@ -43,11 +43,8 @@ public unsafe partial struct Il2CppClass
 
     public string AssemblyQualifiedName => FullName + ", " + Image->NameWithoutExtension;
 
-    public IEnumerable<Handle<Il2CppClass>> GetNestedTypes()
+    public NativeArray<Pointer<Il2CppClass>> GetNestedTypes()
     {
-#if DISABLE_SHORTCUTS
-        return new NativeIterEnumerator<Il2CppClass, Il2CppClass>(Pointer, &Il2CppImports.il2cpp_class_get_nested_types);
-#else
         if (IsGeneric)
         {
             throw new ArgumentException("Can't get nested types for a generic class");
@@ -61,14 +58,10 @@ public unsafe partial struct Il2CppClass
         }
 
         return NativeArray.From(NestedTypeCount, NestedTypes);
-#endif
     }
 
-    public IEnumerable<Handle<Il2CppMethod>> GetMethods()
+    public NativeArray<Pointer<Il2CppMethod>> GetMethods()
     {
-#if DISABLE_SHORTCUTS
-        return new NativeIterEnumerator<Il2CppClass, Il2CppMethod>(Pointer, &Il2CppImports.il2cpp_class_get_methods);
-#else
         // Make sure Class::SetupMethods was called
         if (Rank > 0 || MethodCount > 0)
         {
@@ -77,13 +70,13 @@ public unsafe partial struct Il2CppClass
         }
 
         return NativeArray.From(MethodCount, Methods);
-#endif
     }
 
     public Il2CppMethod* GetMethodByToken(uint token)
     {
-        foreach (var (method, _) in GetMethods())
+        foreach (var methodPointer in GetMethods())
         {
+            var method = methodPointer->Value;
             if (method->Token == token)
             {
                 return method;
@@ -93,11 +86,8 @@ public unsafe partial struct Il2CppClass
         return default;
     }
 
-    public IEnumerable<Handle<Il2CppField>> GetFields()
+    public NativeArray<Il2CppField> GetFields()
     {
-#if DISABLE_SHORTCUTS
-        return new NativeIterEnumerator<Il2CppClass, Il2CppField>(Pointer, &Il2CppImports.il2cpp_class_get_fields);
-#else
         // Make sure Class::SetupFields was called
         if (!IsSizeInitialized)
         {
@@ -105,8 +95,7 @@ public unsafe partial struct Il2CppClass
             Il2CppImports.il2cpp_class_get_fields(Pointer, &iter);
         }
 
-        return new NativeArray<Il2CppField>(FieldCount, Fields).GetHandles();
-#endif
+        return new NativeArray<Il2CppField>(FieldCount, Fields);
     }
 
     public Il2CppField* GetFieldByName(string name)
@@ -114,7 +103,7 @@ public unsafe partial struct Il2CppClass
 #if DISABLE_SHORTCUTS
         return Il2CppImports.il2cpp_class_get_field_from_name(Pointer, name);
 #else
-        foreach (var (field, _) in GetFields())
+        foreach (var field in GetFields())
         {
             if (field->Name == name)
             {

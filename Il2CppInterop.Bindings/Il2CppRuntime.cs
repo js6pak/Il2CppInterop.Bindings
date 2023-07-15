@@ -50,14 +50,15 @@ public static unsafe class Il2CppRuntime
 
     public static void UnhandledException(Il2CppException* ex) => Il2CppImports.il2cpp_unhandled_exception(ex);
 
-    private static readonly Dictionary<string, Handle<Il2CppImage>> _imageMap = new();
+    private static readonly Dictionary<string, Pointer<Il2CppImage>> _imageMap = new();
 
     internal static void Initialize()
     {
         var domain = Il2CppDomain.Current;
 
-        foreach (var (assembly, _) in domain->GetAssemblies())
+        foreach (var assemblyPointer in domain->GetAssemblies())
         {
+            var assembly = assemblyPointer->Value;
             var image = assembly->Image;
             _imageMap[image->Name] = image;
         }
@@ -87,8 +88,9 @@ public static unsafe class Il2CppRuntime
             throw new NotImplementedException();
         }
 
-        foreach (var (nestedType, _) in declaringType->GetNestedTypes())
+        foreach (var nestedTypePointer in declaringType->GetNestedTypes())
         {
+            var nestedType = nestedTypePointer->Value;
             if (nestedType->Name == nestedTypeName)
             {
                 return nestedType;
