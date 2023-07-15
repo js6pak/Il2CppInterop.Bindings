@@ -9,6 +9,10 @@ public unsafe interface INativeIl2CppMethodStructHandler : INativeStructHandler
 
     public void SetMethodPointer(Il2CppMethod* o, void* value);
 
+    public void* GetInvokerMethod(Il2CppMethod* o);
+
+    public void SetInvokerMethod(Il2CppMethod* o, void* value);
+
     public Il2CppClass* GetClass(Il2CppMethod* o);
 
     public void SetClass(Il2CppMethod* o, Il2CppClass* value);

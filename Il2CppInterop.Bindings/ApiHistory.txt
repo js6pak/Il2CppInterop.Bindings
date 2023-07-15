@@ -1,4 +1,4 @@
-5.2.2
+5.2.2 - V16
 + il2cpp_init
 + il2cpp_shutdown
 + il2cpp_set_config_dir
@@ -169,24 +169,24 @@
 + il2cpp_capture_memory_snapshot
 + il2cpp_free_captured_memory_snapshot
 
-5.2.4
+5.2.4 - V16
 + il2cpp_set_find_plugin_callback
 
-5.3.0
+5.3.0 - V16
 - il2cpp_set_find_plugin_callback
 
-5.3.1
+5.3.1 - V16
 + il2cpp_set_find_plugin_callback
 
-5.3.2
+5.3.2 - V19
 + il2cpp_class_get_nested_types
 
-5.3.5
+5.3.5 - V21
 + il2cpp_gc_collect_a_little
 + il2cpp_gc_disable
 + il2cpp_gc_enable
 
-5.5.0
+5.5.0 - V22
 + il2cpp_init_utf16
 + il2cpp_set_commandline_arguments_utf16
 + il2cpp_set_config_utf16
@@ -194,18 +194,18 @@
 - il2cpp_delegate_begin_invoke
 - il2cpp_delegate_end_invoke
 
-5.6.0
+5.6.0 - V23
 + il2cpp_field_set_value_object
 + il2cpp_register_log_callback
 
-2017.1.0
+2017.1.0 - V24
 + il2cpp_set_temp_dir
 + il2cpp_class_is_blittable
 
-2017.3.0
+2017.3.0 - V24
 + il2cpp_profiler_install_fileio
 
-2018.1.0
+2018.1.0 - V24
 + il2cpp_class_get_type_token
 + il2cpp_class_get_rank
 + il2cpp_type_is_byref
@@ -213,14 +213,14 @@
 + il2cpp_debugger_set_agent_options
 - il2cpp_thread_get_name
 
-2018.2.0
+2018.2.0 - V24
 + il2cpp_method_get_from_reflection
 + il2cpp_type_get_attrs
 + il2cpp_type_get_assembly_qualified_name
 + il2cpp_is_debugger_attached
 + il2cpp_unity_install_unitytls_interface
 
-2018.3.0
+2018.3.0 - V24
 + il2cpp_gc_is_disabled
 + il2cpp_gc_wbarrier_set_field
 + il2cpp_profiler_install_thread
@@ -233,7 +233,7 @@
 + il2cpp_custom_attrs_construct
 + il2cpp_custom_attrs_free
 
-2019.1.0
+2019.1.0 - V24
 + il2cpp_gc_get_max_time_slice_ns
 + il2cpp_gc_set_max_time_slice_ns
 + il2cpp_gc_is_incremental
@@ -243,7 +243,7 @@
 + il2cpp_class_set_userdata
 + il2cpp_class_get_userdata_offset
 
-2019.3.0
+2019.3.0 - V24
 + il2cpp_class_for_each
 + il2cpp_type_get_name_chunked
 + il2cpp_class_get_data_size
@@ -264,17 +264,17 @@
 + il2cpp_register_debugger_agent_transport
 + il2cpp_debug_get_method_info
 
-2019.4.0
+2019.4.0 - V24
 + il2cpp_set_default_thread_affinity
 
-2020.1.0
+2020.1.0 - V24
 + il2cpp_native_stack_trace
 
-2020.2.0
+2020.2.0 - V27
 + il2cpp_gc_start_incremental_collection
 + il2cpp_gc_set_mode
 
-2021.2.0
+2021.2.0 - V29
 + il2cpp_gc_alloc_fixed
 + il2cpp_gc_free_fixed
 + il2cpp_unity_liveness_allocate_struct
@@ -283,7 +283,24 @@
 - il2cpp_unity_liveness_calculation_begin
 - il2cpp_unity_liveness_calculation_end
 
-2022.2.0
+2022.2.0 - V29
 + il2cpp_type_get_reflection_name
 + il2cpp_custom_attrs_from_field
+
+il2cpp_unity_set_android_network_up_state_func
+
+2022.2.0 - V29
++ il2cpp_type_get_reflection_name
++ il2cpp_custom_attrs_from_field
+
+2022.2.9 - V29
++ il2cpp_unity_set_android_network_up_state_func
+
+2022.2.19 - V29
++ il2cpp_class_is_inited
+
+2023.1.0 - V29
++ il2cpp_field_get_from_reflection
++ il2cpp_field_get_object
+- il2cpp_class_is_inited
 

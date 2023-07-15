@@ -23,4 +23,5 @@ public unsafe partial struct Il2CppThread
 
     public static Il2CppThread* Current => Il2CppImports.il2cpp_thread_current();
     public static Il2CppThread* Attach(Il2CppDomain* domain) => Il2CppImports.il2cpp_thread_attach(domain);
+    public static Il2CppThread* Attach() => Attach(Il2CppDomain.Current);
 }

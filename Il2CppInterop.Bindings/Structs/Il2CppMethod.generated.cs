@@ -12,6 +12,8 @@ public unsafe partial struct Il2CppMethod
 
     public void* MethodPointer { get => UnityVersionHandler.Il2CppMethod.GetMethodPointer(Pointer); set => UnityVersionHandler.Il2CppMethod.SetMethodPointer(Pointer, value); }
 
+    public void* InvokerMethod { get => UnityVersionHandler.Il2CppMethod.GetInvokerMethod(Pointer); set => UnityVersionHandler.Il2CppMethod.SetInvokerMethod(Pointer, value); }
+
     public Il2CppClass* Class { get => UnityVersionHandler.Il2CppMethod.GetClass(Pointer); set => UnityVersionHandler.Il2CppMethod.SetClass(Pointer, value); }
 
     public string? Name { get => UnityVersionHandler.Il2CppMethod.GetName(Pointer); set => UnityVersionHandler.Il2CppMethod.SetName(Pointer, value); }

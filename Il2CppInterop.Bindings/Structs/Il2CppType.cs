@@ -10,9 +10,9 @@ namespace Il2CppInterop.Bindings.Structs;
 [NativeStruct]
 public unsafe partial struct Il2CppType
 {
-    private void* data;
+    public void* Data { get; set; }
     private ushort attrs;
-    private byte type;
+    public Il2CppTypeEnum Type { get; set; }
     private byte __bitfield_0;
 
     public Il2CppObject* Object => Il2CppImports.il2cpp_type_get_object(Pointer);

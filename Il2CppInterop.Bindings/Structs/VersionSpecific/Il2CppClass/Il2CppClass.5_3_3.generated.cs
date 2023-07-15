@@ -280,6 +280,18 @@ internal unsafe class NativeIl2CppClassStructHandler_5_3_3 : INativeIl2CppClassS
         return _->byval_arg;
     }
 
+    public Il2CppClass* GetElementClass(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_5_3_3*)o;
+        return _->element_class;
+    }
+
+    public void SetElementClass(Il2CppClass* o, Il2CppClass* value)
+    {
+        var _ = (Il2CppClass_5_3_3*)o;
+        _->element_class = value;
+    }
+
     public Il2CppClass** GetNestedTypes(Il2CppClass* o)
     {
         var _ = (Il2CppClass_5_3_3*)o;
@@ -350,6 +362,18 @@ internal unsafe class NativeIl2CppClassStructHandler_5_3_3 : INativeIl2CppClassS
     {
         var _ = (Il2CppClass_5_3_3*)o;
         _->field_count = value;
+    }
+
+    public uint GetInstanceSize(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_5_3_3*)o;
+        return _->instance_size;
+    }
+
+    public void SetInstanceSize(Il2CppClass* o, uint value)
+    {
+        var _ = (Il2CppClass_5_3_3*)o;
+        _->instance_size = value;
     }
 
     public byte GetRank(Il2CppClass* o)

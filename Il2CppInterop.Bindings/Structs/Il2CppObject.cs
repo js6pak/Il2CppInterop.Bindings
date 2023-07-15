@@ -11,7 +11,7 @@ namespace Il2CppInterop.Bindings.Structs;
 public unsafe partial struct Il2CppObject
 {
     private Il2CppClass* klass;
-    private MonitorData monitor;
+    private MonitorData* monitor;
 
     public Il2CppClass* Class =>
 #if DISABLE_SHORTCUTS
@@ -35,9 +35,13 @@ public unsafe partial struct Il2CppObject
 #if DISABLE_SHORTCUTS
         return Il2CppImports.il2cpp_object_unbox(Pointer);
 #else
-        void* val = (byte*)Pointer + sizeof(Il2CppObject);
-        return val;
+        return Pointer + 1;
 #endif
+    }
+
+    public T Unbox<T>() where T : unmanaged
+    {
+        return *(T*)Unbox();
     }
 
     public static Il2CppObject* Box(Il2CppClass* klass, void* data)

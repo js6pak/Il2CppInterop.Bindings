@@ -104,7 +104,8 @@ public abstract class StructGenerator
 
         foreach (var field in Fields)
         {
-            var structField = @struct.Fields.Single(f => field.NativeFieldNames.Contains(f.Name));
+            var structField = @struct.Fields.SingleOrDefault(f => field.NativeFieldNames.Contains(f.Name));
+            if (structField == null) throw new Exception($"Failed to find {field.Name} in {unityVersion}");
             @class.Members.AddRange(field.GetMethods(this, new FieldContext(structName, unityVersion, CodeWriter.SanitizeIdentifier(structField.Name))));
         }
 
@@ -207,6 +208,7 @@ public abstract class StructGenerator
 
     public abstract record Field(string Name, string[] NativeFieldNames)
     {
+        public bool IsReadOnly { get; set; }
         public abstract string Type { get; }
 
         public virtual IEnumerable<CSharpProperty> GetProperties(StructGenerator structGenerator)
@@ -214,7 +216,7 @@ public abstract class StructGenerator
             yield return new CSharpProperty(Type, Name)
             {
                 Getter = new CSharpProperty.Accessor { Body = writer => writer.Write($"UnityVersionHandler.{structGenerator.StructName}.Get{Name}(Pointer);") },
-                Setter = new CSharpProperty.Accessor { Body = writer => writer.Write($"UnityVersionHandler.{structGenerator.StructName}.Set{Name}(Pointer, value);") },
+                Setter = IsReadOnly ? null : new CSharpProperty.Accessor { Body = writer => writer.Write($"UnityVersionHandler.{structGenerator.StructName}.Set{Name}(Pointer, value);") },
             };
         }
 
@@ -234,17 +236,20 @@ public abstract class StructGenerator
                     },
             };
 
-            yield return new CSharpMethod("void", "Set" + Name)
+            if (!IsReadOnly)
             {
-                Parameters = { structParameter, new CSharpParameter(Type, "value") },
-                Body = context == null
-                    ? null
-                    : writer =>
-                    {
-                        writer.WriteLine(context.StoreCast);
-                        WriteSetterBody(writer, context);
-                    },
-            };
+                yield return new CSharpMethod("void", "Set" + Name)
+                {
+                    Parameters = { structParameter, new CSharpParameter(Type, "value") },
+                    Body = context == null
+                        ? null
+                        : writer =>
+                        {
+                            writer.WriteLine(context.StoreCast);
+                            WriteSetterBody(writer, context);
+                        },
+                };
+            }
         }
 
         protected virtual void WriteGetterBody(CodeWriter writer, FieldContext context)

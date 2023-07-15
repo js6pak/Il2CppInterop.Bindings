@@ -39,7 +39,7 @@ public static class ImportsGenerator
                 if (!function.Name.StartsWith("il2cpp_format_") && stringType != null)
                 {
                     var isArray = type.EndsWith("[]");
-                    csharpParameter.Type = isArray ? "string[]" : "string";
+                    csharpParameter.Type = isArray ? "string?[]" : "string?";
 
                     var attribute = new CSharpAttribute("MarshalAs");
 
@@ -86,7 +86,7 @@ public static class ImportsGenerator
 
     public static void Generate(IDictionary<UnityVersion, Il2CppVersion> versions, string outputPath)
     {
-        var ignored = new[] { "unity_liveness", "profiler", "set_find_plugin_callback", "capture_memory_snapshot", "free_captured_memory_snapshot", "delegate", "thread_get_name", "stats", "debug", "register_debugger_agent_transport" };
+        var ignored = new[] { "unity_liveness", "profiler", "set_find_plugin_callback", "capture_memory_snapshot", "free_captured_memory_snapshot", "delegate", "thread_get_name", "stats", "debug", "register_debugger_agent_transport", "unity_set_android_network_up_state_func" };
 
         var @class = new CSharpClass(Visibility.Internal, "Il2CppImports")
         {

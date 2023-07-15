@@ -35,6 +35,10 @@ public unsafe interface INativeIl2CppClassStructHandler : INativeStructHandler
 
     public Il2CppType* GetByVal(Il2CppClass* o);
 
+    public Il2CppClass* GetElementClass(Il2CppClass* o);
+
+    public void SetElementClass(Il2CppClass* o, Il2CppClass* value);
+
     public Il2CppClass** GetNestedTypes(Il2CppClass* o);
 
     public void SetNestedTypes(Il2CppClass* o, Il2CppClass** value);
@@ -58,6 +62,10 @@ public unsafe interface INativeIl2CppClassStructHandler : INativeStructHandler
     public ushort GetFieldCount(Il2CppClass* o);
 
     public void SetFieldCount(Il2CppClass* o, ushort value);
+
+    public uint GetInstanceSize(Il2CppClass* o);
+
+    public void SetInstanceSize(Il2CppClass* o, uint value);
 
     public byte GetRank(Il2CppClass* o);
 

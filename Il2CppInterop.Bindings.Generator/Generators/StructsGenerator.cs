@@ -16,6 +16,7 @@ public static class StructsGenerator
     public static StructGenerator[] Generators { get; } =
     {
         new Il2CppClassGenerator(),
+        new Il2CppImageGenerator(),
         new Il2CppMethodGenerator(),
         new Il2CppExceptionGenerator(),
         new Il2CppArrayGenerator(),

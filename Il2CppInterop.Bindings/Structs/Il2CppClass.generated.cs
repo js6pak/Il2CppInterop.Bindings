@@ -26,6 +26,8 @@ public unsafe partial struct Il2CppClass
 
     public Il2CppType* ByVal => UnityVersionHandler.Il2CppClass.GetByVal(Pointer);
 
+    public Il2CppClass* ElementClass { get => UnityVersionHandler.Il2CppClass.GetElementClass(Pointer); set => UnityVersionHandler.Il2CppClass.SetElementClass(Pointer, value); }
+
     public Il2CppClass** NestedTypes { get => UnityVersionHandler.Il2CppClass.GetNestedTypes(Pointer); set => UnityVersionHandler.Il2CppClass.SetNestedTypes(Pointer, value); }
 
     public ushort NestedTypeCount { get => UnityVersionHandler.Il2CppClass.GetNestedTypeCount(Pointer); set => UnityVersionHandler.Il2CppClass.SetNestedTypeCount(Pointer, value); }
@@ -37,6 +39,8 @@ public unsafe partial struct Il2CppClass
     public Il2CppField* Fields { get => UnityVersionHandler.Il2CppClass.GetFields(Pointer); set => UnityVersionHandler.Il2CppClass.SetFields(Pointer, value); }
 
     public ushort FieldCount { get => UnityVersionHandler.Il2CppClass.GetFieldCount(Pointer); set => UnityVersionHandler.Il2CppClass.SetFieldCount(Pointer, value); }
+
+    public uint InstanceSize { get => UnityVersionHandler.Il2CppClass.GetInstanceSize(Pointer); set => UnityVersionHandler.Il2CppClass.SetInstanceSize(Pointer, value); }
 
     public byte Rank { get => UnityVersionHandler.Il2CppClass.GetRank(Pointer); set => UnityVersionHandler.Il2CppClass.SetRank(Pointer, value); }
 }

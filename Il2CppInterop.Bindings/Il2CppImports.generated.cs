@@ -10,11 +10,11 @@ internal static unsafe partial class Il2CppImports
 {
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_init")]
-    public static partial void il2cpp_init_5_2_2([MarshalAs(UnmanagedType.LPUTF8Str)] string domain_name);
+    public static partial void il2cpp_init_5_2_2([MarshalAs(UnmanagedType.LPUTF8Str)] string? domain_name);
 
     [ApplicableToUnityVersionsSince("2019.1.0")]
     [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_init")]
-    public static partial int il2cpp_init_2019_1_0([MarshalAs(UnmanagedType.LPUTF8Str)] string domain_name);
+    public static partial int il2cpp_init_2019_1_0([MarshalAs(UnmanagedType.LPUTF8Str)] string? domain_name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -22,15 +22,15 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_set_config_dir([MarshalAs(UnmanagedType.LPUTF8Str)] string config_path);
+    public static partial void il2cpp_set_config_dir([MarshalAs(UnmanagedType.LPUTF8Str)] string? config_path);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_set_data_dir([MarshalAs(UnmanagedType.LPUTF8Str)] string data_path);
+    public static partial void il2cpp_set_data_dir([MarshalAs(UnmanagedType.LPUTF8Str)] string? data_path);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_set_commandline_arguments(int argc, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPUTF8Str)] string[] argv, [MarshalAs(UnmanagedType.LPUTF8Str)] string basedir);
+    public static partial void il2cpp_set_commandline_arguments(int argc, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPUTF8Str)] string?[] argv, [MarshalAs(UnmanagedType.LPUTF8Str)] string? basedir);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -42,11 +42,11 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_add_internal_call([MarshalAs(UnmanagedType.LPUTF8Str)] string name, void* method);
+    public static partial void il2cpp_add_internal_call([MarshalAs(UnmanagedType.LPUTF8Str)] string? name, void* method);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void* il2cpp_resolve_icall([MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    public static partial void* il2cpp_resolve_icall([MarshalAs(UnmanagedType.LPUTF8Str)] string? name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -139,7 +139,7 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppClass* il2cpp_class_from_name(Il2CppImage* image, [MarshalAs(UnmanagedType.LPUTF8Str)] string namespaze, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    public static partial Il2CppClass* il2cpp_class_from_name(Il2CppImage* image, [MarshalAs(UnmanagedType.LPUTF8Str)] string? namespaze, [MarshalAs(UnmanagedType.LPUTF8Str)] string? name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -167,11 +167,11 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppProperty* il2cpp_class_get_property_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    public static partial Il2CppProperty* il2cpp_class_get_property_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string? name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppField* il2cpp_class_get_field_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    public static partial Il2CppField* il2cpp_class_get_field_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string? name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -179,7 +179,7 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppMethod* il2cpp_class_get_method_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string name, int argsCount);
+    public static partial Il2CppMethod* il2cpp_class_get_method_from_name(Il2CppClass* klass, [MarshalAs(UnmanagedType.LPUTF8Str)] string? name, int argsCount);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -277,7 +277,7 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppAssembly* il2cpp_domain_assembly_open(Il2CppDomain* domain, [MarshalAs(UnmanagedType.LPUTF8Str)] string name);
+    public static partial Il2CppAssembly* il2cpp_domain_assembly_open(Il2CppDomain* domain, [MarshalAs(UnmanagedType.LPUTF8Str)] string? name);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -289,11 +289,11 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppException* il2cpp_exception_from_name_msg(Il2CppImage* image, [MarshalAs(UnmanagedType.LPUTF8Str)] string name_space, [MarshalAs(UnmanagedType.LPUTF8Str)] string name, [MarshalAs(UnmanagedType.LPUTF8Str)] string msg);
+    public static partial Il2CppException* il2cpp_exception_from_name_msg(Il2CppImage* image, [MarshalAs(UnmanagedType.LPUTF8Str)] string? name_space, [MarshalAs(UnmanagedType.LPUTF8Str)] string? name, [MarshalAs(UnmanagedType.LPUTF8Str)] string? msg);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppException* il2cpp_get_exception_argument_null([MarshalAs(UnmanagedType.LPUTF8Str)] string arg);
+    public static partial Il2CppException* il2cpp_get_exception_argument_null([MarshalAs(UnmanagedType.LPUTF8Str)] string? arg);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -548,19 +548,19 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppString* il2cpp_string_new([MarshalAs(UnmanagedType.LPUTF8Str)] string str);
+    public static partial Il2CppString* il2cpp_string_new([MarshalAs(UnmanagedType.LPUTF8Str)] string? str);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppString* il2cpp_string_new_len([MarshalAs(UnmanagedType.LPUTF8Str)] string str, uint length);
+    public static partial Il2CppString* il2cpp_string_new_len([MarshalAs(UnmanagedType.LPUTF8Str)] string? str, uint length);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppString* il2cpp_string_new_utf16([MarshalAs(UnmanagedType.LPWStr)] string text, int len);
+    public static partial Il2CppString* il2cpp_string_new_utf16([MarshalAs(UnmanagedType.LPWStr)] string? text, int len);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppString* il2cpp_string_new_wrapper([MarshalAs(UnmanagedType.LPUTF8Str)] string str);
+    public static partial Il2CppString* il2cpp_string_new_wrapper([MarshalAs(UnmanagedType.LPUTF8Str)] string? str);
 
     [ApplicableToUnityVersionsSince("5.2.2")]
     [LibraryImportAttribute("GameAssembly")]
@@ -677,23 +677,23 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("5.5.0")]
     [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_init_utf16")]
-    public static partial void il2cpp_init_utf16_5_5_0([MarshalAs(UnmanagedType.LPWStr)] string domain_name);
+    public static partial void il2cpp_init_utf16_5_5_0([MarshalAs(UnmanagedType.LPWStr)] string? domain_name);
 
     [ApplicableToUnityVersionsSince("2019.1.0")]
     [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_init_utf16")]
-    public static partial int il2cpp_init_utf16_2019_1_0([MarshalAs(UnmanagedType.LPWStr)] string domain_name);
+    public static partial int il2cpp_init_utf16_2019_1_0([MarshalAs(UnmanagedType.LPWStr)] string? domain_name);
 
     [ApplicableToUnityVersionsSince("5.5.0")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_set_commandline_arguments_utf16(int argc, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string[] argv, [MarshalAs(UnmanagedType.LPUTF8Str)] string basedir);
+    public static partial void il2cpp_set_commandline_arguments_utf16(int argc, [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr)] string?[] argv, [MarshalAs(UnmanagedType.LPUTF8Str)] string? basedir);
 
     [ApplicableToUnityVersionsSince("5.5.0")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_set_config_utf16([MarshalAs(UnmanagedType.LPWStr)] string executablePath);
+    public static partial void il2cpp_set_config_utf16([MarshalAs(UnmanagedType.LPWStr)] string? executablePath);
 
     [ApplicableToUnityVersionsSince("5.5.0")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_set_config([MarshalAs(UnmanagedType.LPUTF8Str)] string executablePath);
+    public static partial void il2cpp_set_config([MarshalAs(UnmanagedType.LPUTF8Str)] string? executablePath);
 
     [ApplicableToUnityVersionsSince("5.6.0")]
     [LibraryImportAttribute("GameAssembly")]
@@ -705,7 +705,7 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("2017.1.0")]
     [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_set_temp_dir([MarshalAs(UnmanagedType.LPUTF8Str)] string temp_path);
+    public static partial void il2cpp_set_temp_dir([MarshalAs(UnmanagedType.LPUTF8Str)] string? temp_path);
 
     [ApplicableToUnityVersionsSince("2017.1.0")]
     [LibraryImportAttribute("GameAssembly")]
@@ -904,11 +904,11 @@ internal static unsafe partial class Il2CppImports
 
     [ApplicableToUnityVersionsSince("2020.1.0")]
     [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_native_stack_trace")]
-    public static partial void il2cpp_native_stack_trace_2020_1_0(Il2CppException* ex, nuint** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageUUID);
+    public static partial void il2cpp_native_stack_trace_2020_1_0(Il2CppException* ex, nuint** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string? imageUUID);
 
     [ApplicableToUnityVersionsSince("2021.2.0")]
     [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_native_stack_trace")]
-    public static partial void il2cpp_native_stack_trace_2021_2_0(Il2CppException* ex, nuint** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageUUID, [MarshalAs(UnmanagedType.LPUTF8Str)] string imageName);
+    public static partial void il2cpp_native_stack_trace_2021_2_0(Il2CppException* ex, nuint** addresses, int* numFrames, [MarshalAs(UnmanagedType.LPUTF8Str)] string? imageUUID, [MarshalAs(UnmanagedType.LPUTF8Str)] string? imageName);
 
     [ApplicableToUnityVersionsSince("2020.2.0")]
     [LibraryImportAttribute("GameAssembly")]

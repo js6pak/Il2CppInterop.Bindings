@@ -23,6 +23,26 @@ public unsafe partial struct Il2CppClass
         IsGeneric;
 #endif
 
+    public string FullName
+    {
+        get
+        {
+            if (DeclaringType != null)
+            {
+                return DeclaringType->FullName + "+" + Name;
+            }
+
+            if (!string.IsNullOrEmpty(Namespace))
+            {
+                return Namespace + Name;
+            }
+
+            return Name ?? throw new InvalidOperationException("Name can't be null");
+        }
+    }
+
+    public string AssemblyQualifiedName => FullName + ", " + Image->NameWithoutExtension;
+
     public IEnumerable<Handle<Il2CppClass>> GetNestedTypes()
     {
 #if DISABLE_SHORTCUTS
@@ -135,5 +155,15 @@ public unsafe partial struct Il2CppClass
 #else
         return FromIl2CppType(type->Type);
 #endif
+    }
+
+    public static Il2CppClass* MakePointerClass(Il2CppClass* elementClass)
+    {
+        var pointerType = new Il2CppType
+        {
+            Type = Il2CppTypeEnum.Ptr,
+            Data = elementClass->Type,
+        };
+        return FromIl2CppType(&pointerType);
     }
 }

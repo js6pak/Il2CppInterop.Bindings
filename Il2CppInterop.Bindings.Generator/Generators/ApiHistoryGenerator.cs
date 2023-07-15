@@ -45,7 +45,7 @@ public static class ApiHistoryGenerator
 
             if (changes.Length > 0)
             {
-                await historyWriter.WriteLineAsync(unityVersion.ToFriendlyString());
+                await historyWriter.WriteLineAsync($"{unityVersion.ToFriendlyString()} - V{version.MetadataVersion}");
                 await historyWriter.WriteLineAsync(changes);
             }
         }

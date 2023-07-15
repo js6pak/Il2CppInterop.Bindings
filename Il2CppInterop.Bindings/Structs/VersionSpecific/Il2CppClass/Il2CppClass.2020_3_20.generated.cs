@@ -330,6 +330,18 @@ internal unsafe class NativeIl2CppClassStructHandler_2020_3_20 : INativeIl2CppCl
         return &_->byval_arg;
     }
 
+    public Il2CppClass* GetElementClass(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2020_3_20*)o;
+        return _->element_class;
+    }
+
+    public void SetElementClass(Il2CppClass* o, Il2CppClass* value)
+    {
+        var _ = (Il2CppClass_2020_3_20*)o;
+        _->element_class = value;
+    }
+
     public Il2CppClass** GetNestedTypes(Il2CppClass* o)
     {
         var _ = (Il2CppClass_2020_3_20*)o;
@@ -400,6 +412,18 @@ internal unsafe class NativeIl2CppClassStructHandler_2020_3_20 : INativeIl2CppCl
     {
         var _ = (Il2CppClass_2020_3_20*)o;
         _->field_count = value;
+    }
+
+    public uint GetInstanceSize(Il2CppClass* o)
+    {
+        var _ = (Il2CppClass_2020_3_20*)o;
+        return _->instance_size;
+    }
+
+    public void SetInstanceSize(Il2CppClass* o, uint value)
+    {
+        var _ = (Il2CppClass_2020_3_20*)o;
+        _->instance_size = value;
     }
 
     public byte GetRank(Il2CppClass* o)

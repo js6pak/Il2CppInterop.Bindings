@@ -1,8 +1,6 @@
 #if DISABLE_SHORTCUTS
 using System.Collections;
 #endif
-using System.Runtime.InteropServices;
-using AssetRipper.VersionUtilities;
 using Il2CppInterop.Bindings.Utilities;
 
 #pragma warning disable CS0649

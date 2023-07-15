@@ -1,5 +1,4 @@
-﻿using AssetRipper.VersionUtilities;
-using CSharpPoet;
+﻿using CSharpPoet;
 
 namespace Il2CppInterop.Bindings.Generator.Generators.Struct;
 
@@ -17,6 +16,7 @@ internal class Il2CppClassGenerator : StructGenerator
         new BoolField("IsSizeInitialized", new[] { "size_inited" }),
 
         new ByValField(),
+        new NormalField("Il2CppClass*", "ElementClass", new[] { "element_class" }),
 
         new NormalField("Il2CppClass**", "NestedTypes", new[] { "nestedTypes" }),
         new NormalField("ushort", "NestedTypeCount", new[] { "nested_type_count" }),
@@ -27,6 +27,7 @@ internal class Il2CppClassGenerator : StructGenerator
         new NormalField("Il2CppField*", "Fields", new[] { "fields" }),
         new NormalField("ushort", "FieldCount", new[] { "field_count" }),
 
+        new NormalField("uint", "InstanceSize", new[] { "instance_size" }),
         new NormalField("byte", "Rank", new[] { "rank" }),
     };
 

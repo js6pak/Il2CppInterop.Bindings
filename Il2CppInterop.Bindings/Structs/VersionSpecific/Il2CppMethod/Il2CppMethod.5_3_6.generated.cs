@@ -66,6 +66,18 @@ internal unsafe class NativeIl2CppMethodStructHandler_5_3_6 : INativeIl2CppMetho
         _->methodPointer = value;
     }
 
+    public void* GetInvokerMethod(Il2CppMethod* o)
+    {
+        var _ = (Il2CppMethod_5_3_6*)o;
+        return _->invoker_method;
+    }
+
+    public void SetInvokerMethod(Il2CppMethod* o, void* value)
+    {
+        var _ = (Il2CppMethod_5_3_6*)o;
+        _->invoker_method = value;
+    }
+
     public Il2CppClass* GetClass(Il2CppMethod* o)
     {
         var _ = (Il2CppMethod_5_3_6*)o;

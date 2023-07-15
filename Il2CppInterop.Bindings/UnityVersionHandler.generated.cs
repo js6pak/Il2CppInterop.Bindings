@@ -3,6 +3,7 @@
 
 using AssetRipper.VersionUtilities;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppClassHandlers;
+using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppImageHandlers;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppMethodHandlers;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppExceptionHandlers;
 using Il2CppInterop.Bindings.Structs.VersionSpecific.Il2CppArrayHandlers;
@@ -12,6 +13,7 @@ namespace Il2CppInterop.Bindings;
 public static partial class UnityVersionHandler
 {
     public static INativeIl2CppClassStructHandler Il2CppClass { get; private set; }
+    public static INativeIl2CppImageStructHandler Il2CppImage { get; private set; }
     public static INativeIl2CppMethodStructHandler Il2CppMethod { get; private set; }
     public static INativeIl2CppExceptionStructHandler Il2CppException { get; private set; }
     public static INativeIl2CppArrayStructHandler Il2CppArray { get; private set; }
@@ -37,6 +39,17 @@ public static partial class UnityVersionHandler
         else if (unityVersion.IsGreaterEqual(5, 3, 3)) Il2CppClass = new NativeIl2CppClassStructHandler_5_3_3();
         else if (unityVersion.IsGreaterEqual(5, 3, 2)) Il2CppClass = new NativeIl2CppClassStructHandler_5_3_2();
         else if (unityVersion.IsGreaterEqual(5, 2, 2)) Il2CppClass = new NativeIl2CppClassStructHandler_5_2_2();
+
+        if (unityVersion.IsGreaterEqual(2020, 2, 0)) Il2CppImage = new NativeIl2CppImageStructHandler_2020_2_0();
+        else if (unityVersion.IsGreaterEqual(2019, 1, 0)) Il2CppImage = new NativeIl2CppImageStructHandler_2019_1_0();
+        else if (unityVersion.IsGreaterEqual(2018, 3, 0)) Il2CppImage = new NativeIl2CppImageStructHandler_2018_3_0();
+        else if (unityVersion.IsGreaterEqual(2018, 1, 0)) Il2CppImage = new NativeIl2CppImageStructHandler_2018_1_0();
+        else if (unityVersion.IsGreaterEqual(2017, 2, 1)) Il2CppImage = new NativeIl2CppImageStructHandler_2017_2_1();
+        else if (unityVersion.IsGreaterEqual(2017, 2, 0)) Il2CppImage = new NativeIl2CppImageStructHandler_2017_2_0();
+        else if (unityVersion.IsGreaterEqual(2017, 1, 3)) Il2CppImage = new NativeIl2CppImageStructHandler_2017_1_3();
+        else if (unityVersion.IsGreaterEqual(2017, 1, 0)) Il2CppImage = new NativeIl2CppImageStructHandler_2017_1_0();
+        else if (unityVersion.IsGreaterEqual(5, 3, 2)) Il2CppImage = new NativeIl2CppImageStructHandler_5_3_2();
+        else if (unityVersion.IsGreaterEqual(5, 2, 2)) Il2CppImage = new NativeIl2CppImageStructHandler_5_2_2();
 
         if (unityVersion.IsGreaterEqual(2022, 1, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2022_1_0();
         else if (unityVersion.IsGreaterEqual(2021, 2, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2021_2_0();

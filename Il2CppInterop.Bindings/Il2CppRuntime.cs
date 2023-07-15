@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using AssetRipper.VersionUtilities;
 using Il2CppInterop.Bindings.Structs;
 using Il2CppInterop.Bindings.Utilities;
 
@@ -6,15 +7,15 @@ namespace Il2CppInterop.Bindings;
 
 public static unsafe class Il2CppRuntime
 {
-    public static int Init(string domainName)
+    public static int Init(string domainName, UnityVersion unityVersion)
     {
-        if (UnityVersionHandler.Version.IsGreaterEqual(2019, 1, 0))
+        if (unityVersion.IsGreaterEqual(2019, 1, 0))
         {
             return Il2CppImports.il2cpp_init_2019_1_0(domainName);
         }
 
         Il2CppImports.il2cpp_init_5_2_2(domainName);
-        return 0;
+        return 1;
     }
 
     public static void Shutdown() => Il2CppImports.il2cpp_shutdown();
@@ -34,6 +35,8 @@ public static unsafe class Il2CppRuntime
             Il2CppImports.il2cpp_set_commandline_arguments(arguments.Length, arguments, null);
         }
     }
+
+    public static void RegisterLogCallback(delegate*unmanaged<char*, void> method) => Il2CppImports.il2cpp_register_log_callback(method);
 
     public static void AddInternalCall(string name, void* method) => Il2CppImports.il2cpp_add_internal_call(name, method);
 
@@ -72,7 +75,9 @@ public static unsafe class Il2CppRuntime
 
     public static Il2CppClass* GetClassFromName(string imageName, string? @namespace, string name)
     {
-        return Il2CppClass.FromName(GetImage(imageName), @namespace ?? "", name);
+        var value = Il2CppClass.FromName(GetImage(imageName), @namespace ?? "", name);
+        if (value == null) throw new Exception($"Couldn't find class named {@namespace}.{name} in {imageName}");
+        return value;
     }
 
     public static Il2CppClass* GetNestedClassFromName(Il2CppClass* declaringType, string nestedTypeName)
@@ -90,6 +95,6 @@ public static unsafe class Il2CppRuntime
             }
         }
 
-        return default;
+        throw new Exception($"Couldn't find nested class named {nestedTypeName} in {declaringType->AssemblyQualifiedName}");
     }
 }
