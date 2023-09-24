@@ -29,17 +29,27 @@ public readonly unsafe struct NativeArray<T> : IEnumerable<T>
     public ref struct RefEnumerator
     {
         private readonly NativeArray<T> _array;
-        private nuint _index = 0;
+        private nuint? _index = null;
 
         public RefEnumerator(NativeArray<T> array)
         {
             _array = array;
         }
 
-        public bool MoveNext() => _index++ < _array.Size;
-        public void Reset() => _index = 0;
+        public bool MoveNext()
+        {
+            if (_index == null)
+            {
+                _index = 0;
+                return true;
+            }
 
-        public readonly T* Current => _array[_index];
+            return ++_index < _array.Size;
+        }
+
+        public void Reset() => _index = null;
+
+        public readonly T* Current => _index != null ? _array[_index.Value] : null;
     }
 
     public RefEnumerator GetEnumerator()
@@ -50,17 +60,27 @@ public readonly unsafe struct NativeArray<T> : IEnumerable<T>
     private class Enumerator : IEnumerator<T>
     {
         private readonly NativeArray<T> _array;
-        private nuint _index;
+        private nuint? _index = null;
 
         public Enumerator(NativeArray<T> array)
         {
             _array = array;
         }
 
-        public bool MoveNext() => _index++ < _array.Size;
-        public void Reset() => _index = 0;
+        public bool MoveNext()
+        {
+            if (_index == null)
+            {
+                _index = 0;
+                return true;
+            }
 
-        public T Current => *_array[_index];
+            return ++_index < _array.Size;
+        }
+
+        public void Reset() => _index = null;
+
+        public T Current => _index != null ? *_array[_index.Value] : default;
 
         object IEnumerator.Current => Current;
 
