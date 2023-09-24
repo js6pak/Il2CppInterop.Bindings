@@ -13,7 +13,7 @@ public unsafe partial struct Il2CppField
 {
     private byte* name;
     private Il2CppType* type;
-    private Il2CppType* parent;
+    private Il2CppClass* parent;
     private int offset; // If offset is -1, then it's thread static
     private int token; // this was a CustomAttributeIndex in very old il2cpp versions
 
@@ -22,6 +22,20 @@ public unsafe partial struct Il2CppField
         Marshal.PtrToStringUTF8((IntPtr)Il2CppImports.il2cpp_field_get_name(Pointer))!;
 #else
         Marshal.PtrToStringUTF8((IntPtr)name)!;
+#endif
+
+    public Il2CppType* Type =>
+#if DISABLE_SHORTCUTS
+       Il2CppImports.il2cpp_field_get_type(Pointer);
+#else
+        type;
+#endif
+
+    public Il2CppClass* Parent =>
+#if DISABLE_SHORTCUTS
+       Il2CppImports.il2cpp_field_get_parent(Pointer);
+#else
+        parent;
 #endif
 
     public int Offset =>

@@ -59,3 +59,8 @@ public unsafe partial struct VirtualInvokeData
     private void* methodPtr;
     private Il2CppMethod* method;
 }
+
+[NativeStruct]
+public partial struct Il2CppProfiler
+{
+}
