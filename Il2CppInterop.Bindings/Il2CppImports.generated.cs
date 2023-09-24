@@ -373,21 +373,37 @@ internal static unsafe partial class Il2CppImports
     [LibraryImportAttribute("GameAssembly")]
     public static partial long il2cpp_gc_get_heap_size();
 
-    [ApplicableToUnityVersions("5.2.2")]
-    [LibraryImportAttribute("GameAssembly")]
-    public static partial uint il2cpp_gchandle_new(Il2CppObject* obj, [MarshalAs(UnmanagedType.U1)] bool pinned);
+    [ApplicableToUnityVersions("5.2.2", "2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_new")]
+    public static partial uint il2cpp_gchandle_new_5_2_2(Il2CppObject* obj, [MarshalAs(UnmanagedType.U1)] bool pinned);
 
-    [ApplicableToUnityVersions("5.2.2")]
-    [LibraryImportAttribute("GameAssembly")]
-    public static partial uint il2cpp_gchandle_new_weakref(Il2CppObject* obj, [MarshalAs(UnmanagedType.U1)] bool track_resurrection);
+    [ApplicableToUnityVersions("2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_new")]
+    public static partial void* il2cpp_gchandle_new_2023_1_0(Il2CppObject* obj, [MarshalAs(UnmanagedType.U1)] bool pinned);
 
-    [ApplicableToUnityVersions("5.2.2")]
-    [LibraryImportAttribute("GameAssembly")]
-    public static partial Il2CppObject* il2cpp_gchandle_get_target(uint gchandle);
+    [ApplicableToUnityVersions("5.2.2", "2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_new_weakref")]
+    public static partial uint il2cpp_gchandle_new_weakref_5_2_2(Il2CppObject* obj, [MarshalAs(UnmanagedType.U1)] bool track_resurrection);
 
-    [ApplicableToUnityVersions("5.2.2")]
-    [LibraryImportAttribute("GameAssembly")]
-    public static partial void il2cpp_gchandle_free(uint gchandle);
+    [ApplicableToUnityVersions("2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_new_weakref")]
+    public static partial void* il2cpp_gchandle_new_weakref_2023_1_0(Il2CppObject* obj, [MarshalAs(UnmanagedType.U1)] bool track_resurrection);
+
+    [ApplicableToUnityVersions("5.2.2", "2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_get_target")]
+    public static partial Il2CppObject* il2cpp_gchandle_get_target_5_2_2(uint gchandle);
+
+    [ApplicableToUnityVersions("2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_get_target")]
+    public static partial Il2CppObject* il2cpp_gchandle_get_target_2023_1_0(void* gchandle);
+
+    [ApplicableToUnityVersions("5.2.2", "2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_free")]
+    public static partial void il2cpp_gchandle_free_5_2_2(uint gchandle);
+
+    [ApplicableToUnityVersions("2023.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_gchandle_free")]
+    public static partial void il2cpp_gchandle_free_2023_1_0(void* gchandle);
 
     [ApplicableToUnityVersions("5.2.2", "2021.2.0")]
     [LibraryImportAttribute("GameAssembly")]
@@ -1007,6 +1023,14 @@ internal static unsafe partial class Il2CppImports
     [LibraryImportAttribute("GameAssembly")]
     public static partial void il2cpp_unity_liveness_free_struct(void* state);
 
+    [ApplicableToUnityVersions("2021.3.20", "2022.1.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_unity_set_android_network_up_state_func")]
+    public static partial void il2cpp_unity_set_android_network_up_state_func_2021_3_20(void* func);
+
+    [ApplicableToUnityVersions("2022.2.9")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_unity_set_android_network_up_state_func")]
+    public static partial void il2cpp_unity_set_android_network_up_state_func_2022_2_9(void* func);
+
     [ApplicableToUnityVersions("2022.2.0")]
     [LibraryImportAttribute("GameAssembly")]
     public static partial byte* il2cpp_type_get_reflection_name(Il2CppType* type);
@@ -1014,4 +1038,17 @@ internal static unsafe partial class Il2CppImports
     [ApplicableToUnityVersions("2022.2.0")]
     [LibraryImportAttribute("GameAssembly")]
     public static partial Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_field(Il2CppField* field);
+
+    [ApplicableToUnityVersions("2022.2.19", "2023.1.0")]
+    [LibraryImportAttribute("GameAssembly")]
+    [return: MarshalAs(UnmanagedType.U1)]
+    public static partial bool il2cpp_class_is_inited(Il2CppClass* klass);
+
+    [ApplicableToUnityVersions("2023.1.0")]
+    [LibraryImportAttribute("GameAssembly")]
+    public static partial Il2CppField* il2cpp_field_get_from_reflection(Il2CppReflectionField* field);
+
+    [ApplicableToUnityVersions("2023.1.0")]
+    [LibraryImportAttribute("GameAssembly")]
+    public static partial Il2CppReflectionField* il2cpp_field_get_object(Il2CppField* field, Il2CppClass* refclass);
 }

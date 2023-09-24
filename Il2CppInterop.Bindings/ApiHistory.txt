@@ -283,11 +283,11 @@
 - il2cpp_unity_liveness_calculation_begin
 - il2cpp_unity_liveness_calculation_end
 
-2022.2.0 - V29
-+ il2cpp_type_get_reflection_name
-+ il2cpp_custom_attrs_from_field
+2021.3.20 - V29
++ il2cpp_unity_set_android_network_up_state_func
 
-il2cpp_unity_set_android_network_up_state_func
+2022.1.0 - V29
+- il2cpp_unity_set_android_network_up_state_func
 
 2022.2.0 - V29
 + il2cpp_type_get_reflection_name

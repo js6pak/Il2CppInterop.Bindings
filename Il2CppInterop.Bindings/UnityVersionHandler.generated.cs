@@ -20,7 +20,8 @@ public static partial class UnityVersionHandler
 
     private static void InitializeNativeStructHandlers(UnityVersion unityVersion)
     {
-        if (unityVersion.IsGreaterEqual(2022, 2, 0)) Il2CppClass = new NativeIl2CppClassStructHandler_2022_2_0();
+        if (unityVersion.IsGreaterEqual(2023, 1, 0)) Il2CppClass = new NativeIl2CppClassStructHandler_2023_1_0();
+        else if (unityVersion.IsGreaterEqual(2022, 2, 0)) Il2CppClass = new NativeIl2CppClassStructHandler_2022_2_0();
         else if (unityVersion.IsGreaterEqual(2021, 2, 0)) Il2CppClass = new NativeIl2CppClassStructHandler_2021_2_0();
         else if (unityVersion.IsGreaterEqual(2021, 1, 24)) Il2CppClass = new NativeIl2CppClassStructHandler_2021_1_24();
         else if (unityVersion.IsGreaterEqual(2021, 1, 0)) Il2CppClass = new NativeIl2CppClassStructHandler_2021_1_0();
