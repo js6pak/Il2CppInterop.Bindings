@@ -86,6 +86,36 @@ public unsafe partial struct Il2CppClass
         return default;
     }
 
+    public Il2CppMethod* GetMethodByName(string name)
+    {
+        var found = false;
+        var result = default(Il2CppMethod*);
+
+        foreach (var methodPointer in GetMethods())
+        {
+            var method = methodPointer->Value;
+            if (method->Name == name)
+            {
+                if (found)
+                {
+                    throw new InvalidOperationException($"Class contains more than one method named {name}");
+                }
+
+                found = true;
+                result = method;
+            }
+        }
+
+        return result;
+    }
+
+    public Il2CppMethod* GetMethodByNameOrThrow(string name)
+    {
+        var result = GetMethodByName(name);
+        if (result == null) throw new InvalidOperationException($"Class contains no method named {name}");
+        return result;
+    }
+
     public NativeArray<Il2CppField> GetFields()
     {
         // Make sure Class::SetupFields was called
