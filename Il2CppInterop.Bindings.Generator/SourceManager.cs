@@ -55,6 +55,7 @@ public static class SourceManager
                         DestinationDirectory = Path.Join(sourcesPath, Path.GetFileNameWithoutExtension(f.Name)),
                         UnityVersion = UnityVersion.Parse(Path.GetFileNameWithoutExtension(f.Name)),
                     })
+                .OrderBy(ctx => ctx.UnityVersion)
                 .Where(ctx => ctx.UnityVersion.Type == UnityVersionType.Final)
                 // Versions before 5.2.1 didn't have source files which we need for extracting metadata version
                 .Where(ctx => ctx.UnityVersion.IsGreater(5, 2, 1));
