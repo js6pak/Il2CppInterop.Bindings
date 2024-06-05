@@ -304,3 +304,7 @@
 + il2cpp_field_get_object
 - il2cpp_class_is_inited
 
+2023.2.0 - V29
++ il2cpp_class_is_inited
+- il2cpp_thread_get_all_attached_threads
+

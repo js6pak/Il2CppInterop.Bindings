@@ -647,7 +647,7 @@ internal static unsafe partial class Il2CppImports
     [LibraryImportAttribute("GameAssembly")]
     public static partial void il2cpp_thread_detach(Il2CppThread* thread);
 
-    [ApplicableToUnityVersions("5.2.2")]
+    [ApplicableToUnityVersions("5.2.2", "2023.2.0")]
     [LibraryImportAttribute("GameAssembly")]
     public static partial Il2CppThread** il2cpp_thread_get_all_attached_threads(nuint* size);
 
@@ -1040,9 +1040,14 @@ internal static unsafe partial class Il2CppImports
     public static partial Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_field(Il2CppField* field);
 
     [ApplicableToUnityVersions("2022.2.19", "2023.1.0")]
-    [LibraryImportAttribute("GameAssembly")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_class_is_inited")]
     [return: MarshalAs(UnmanagedType.U1)]
-    public static partial bool il2cpp_class_is_inited(Il2CppClass* klass);
+    public static partial bool il2cpp_class_is_inited_2022_2_19(Il2CppClass* klass);
+
+    [ApplicableToUnityVersions("2023.2.0")]
+    [LibraryImportAttribute("GameAssembly", EntryPoint = "il2cpp_class_is_inited")]
+    [return: MarshalAs(UnmanagedType.U1)]
+    public static partial bool il2cpp_class_is_inited_2023_2_0(Il2CppClass* klass);
 
     [ApplicableToUnityVersions("2023.1.0")]
     [LibraryImportAttribute("GameAssembly")]

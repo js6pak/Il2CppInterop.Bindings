@@ -52,7 +52,8 @@ public static partial class UnityVersionHandler
         else if (unityVersion.IsGreaterEqual(5, 3, 2)) Il2CppImage = new NativeIl2CppImageStructHandler_5_3_2();
         else if (unityVersion.IsGreaterEqual(5, 2, 2)) Il2CppImage = new NativeIl2CppImageStructHandler_5_2_2();
 
-        if (unityVersion.IsGreaterEqual(2022, 1, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2022_1_0();
+        if (unityVersion.IsGreaterEqual(2023, 2, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2023_2_0();
+        else if (unityVersion.IsGreaterEqual(2022, 1, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2022_1_0();
         else if (unityVersion.IsGreaterEqual(2021, 2, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2021_2_0();
         else if (unityVersion.IsGreaterEqual(2018, 3, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2018_3_0();
         else if (unityVersion.IsGreaterEqual(2018, 1, 0)) Il2CppMethod = new NativeIl2CppMethodStructHandler_2018_1_0();
