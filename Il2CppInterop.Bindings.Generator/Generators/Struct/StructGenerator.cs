@@ -58,7 +58,7 @@ public abstract class StructGenerator
                     csharpStruct.Add(new CSharpField(type, bitFieldName));
                 }
 
-                var bitMask = (1 << (int)bitField.Width) - 1;
+                var bitMask = (1 << bitField.Width) - 1;
                 var bitMaskText = "0b" + Convert.ToString(bitMask, 2);
 
                 csharpStruct.Add(new CSharpProperty(type, field.Name)

@@ -24,7 +24,7 @@ public record Il2CppVersion(int MetadataVersion, List<Il2CppVersion.Function> Fu
     {
         public record Field(string Name, string Type);
 
-        public record BitField(string Name, string Type, uint Start, uint Width) : Field(Name, Type);
+        public record BitField(string Name, string Type, uint Start, int Width) : Field(Name, Type);
 
         public virtual bool Equals(Struct? other)
         {

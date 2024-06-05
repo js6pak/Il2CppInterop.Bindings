@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using AssetRipper.VersionUtilities;
 using ClangSharp;
 using ClangSharp.Interop;
-using ClangSharp.Pathogen;
 using Il2CppInterop.Bindings.Generator;
 using Il2CppInterop.Bindings.Generator.Generators;
 
@@ -128,44 +127,47 @@ await Parallel.ForEachAsync(sources, new ParallelOptions { MaxDegreeOfParallelis
             }
             else if (cursor is RecordDecl record)
             {
-                // Ignore empty structs from il2cpp-api-types.h and il2cpp-object-internals.h
-                if (!record.Fields.Any())
-                {
-                    return;
-                }
+                if (!record.IsThisDeclarationADefinition) return;
 
                 var name = StructsGenerator.RenameStruct(record.TypeForDecl.AsString);
                 var fields = new List<Il2CppVersion.Struct.Field>();
 
-                unsafe
+                if (record is CXXRecordDecl cxxRecord)
                 {
-                    var layout = PathogenExtensions.pathogen_GetRecordLayout(record.Handle);
-
-                    if (layout != null)
+                    var @base = cxxRecord.Bases.SingleOrDefault(@base => !@base.IsVirtual);
+                    if (@base != null)
                     {
-                        try
-                        {
-                            for (var field = layout->FirstField; field != null; field = field->NextField)
-                            {
-                                if (field->Kind is PathogenRecordFieldKind.Normal or PathogenRecordFieldKind.NonVirtualBase)
-                                {
-                                    var type = translationUnit.FindType(field->Type);
+                        fields.Add(new Il2CppVersion.Struct.Field("base", @base.Type.ToCSharpString()));
+                    }
+                }
 
-                                    var fieldName = field->Name.ToString().Intern();
-                                    var fieldTypeName = type.ToCSharpString().Intern();
+                var remainingBits = 0L;
+                var currentBits = 0L;
 
-                                    fields.Add(
-                                        field->IsBitField != 0
-                                            ? new Il2CppVersion.Struct.BitField(fieldName, fieldTypeName, field->BitFieldStart, field->BitFieldWidth)
-                                            : new Il2CppVersion.Struct.Field(fieldName, fieldTypeName)
-                                    );
-                                }
-                            }
-                        }
-                        finally
+                foreach (var field in record.Fields)
+                {
+                    var fieldName = field.IsAnonymousField ? string.Empty : field.Name.Intern();
+                    var fieldTypeName = field.Type.ToCSharpString().Intern();
+
+                    if (field.IsBitField)
+                    {
+                        var currentSize = field.Type.Handle.SizeOf;
+
+                        if (field.BitWidthValue > remainingBits)
                         {
-                            PathogenExtensions.pathogen_DeleteRecordLayout(layout);
+                            currentBits = currentSize * 8;
+                            remainingBits = currentBits;
                         }
+
+                        fields.Add(new Il2CppVersion.Struct.BitField(fieldName, fieldTypeName, (uint)(currentBits - remainingBits), field.BitWidthValue));
+
+                        remainingBits -= field.BitWidthValue;
+                    }
+                    else
+                    {
+                        remainingBits = 0;
+
+                        fields.Add(new Il2CppVersion.Struct.Field(fieldName, fieldTypeName));
                     }
                 }
 

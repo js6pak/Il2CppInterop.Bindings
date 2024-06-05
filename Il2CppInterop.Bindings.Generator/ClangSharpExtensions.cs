@@ -1,29 +1,15 @@
 // Adapted from https://github.com/MochiLibraries/Biohazrd
 
 global using ClangType = ClangSharp.Type;
-using System.Diagnostics;
 using System.Reflection;
 using ClangSharp;
 using ClangSharp.Interop;
-using ClangSharp.Pathogen;
 using Il2CppInterop.Bindings.Generator.Generators;
 
 namespace Il2CppInterop.Bindings.Generator;
 
 public static class ClangSharpExtensions
 {
-    internal static ClangType FindType(this TranslationUnit translationUnit, CXType handle)
-    {
-        if (handle.kind == CXTypeKind.CXType_Invalid)
-        {
-            throw new ArgumentException("The specified type handle is invalid.", nameof(handle));
-        }
-
-        var ret = translationUnit.GetOrCreate(handle);
-        Debug.Assert(ret is not null);
-        return ret;
-    }
-
     public static string ToCSharpString(this ClangType clangType)
     {
         if (clangType.IsLocalConstQualified)
@@ -117,9 +103,9 @@ public static class ClangSharpExtensions
                 return "void";
         }
 
-        if (clangType.AsTagDecl is CXXRecordDecl { IsAnonymousStructOrUnion: true, IsUnion: true })
+        if (clangType.AsTagDecl is CXXRecordDecl { IsAnonymousStructOrUnion: true, IsUnion: true } unionRecord)
         {
-            var fields = clangType.AsCXXRecordDecl.Fields;
+            var fields = unionRecord.Fields;
             if (fields.Any() && fields.All(f => f.Type.IsPointerType))
             {
                 return "void*";
